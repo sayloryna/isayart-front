@@ -11,7 +11,12 @@ export default defineConfig({
     environment: "jsdom",
     coverage: {
       include: ["src/**/*.{ts,tsx}"],
-      exclude: ["src/**/**/main.tsx", "src/setupTest.ts"],
+      exclude: [
+        "src/**/**/main.tsx",
+        "src/setupTest.ts",
+        "src/redux/hooks.ts",
+        "src/redux/store.ts",
+      ],
       reporter: "lcov",
     },
   },
