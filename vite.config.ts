@@ -12,6 +12,7 @@ export default defineConfig({
     coverage: {
       include: ["src/**/*.{ts,tsx}"],
       exclude: ["src/**/**/main.tsx", "src/setupTest.ts"],
+      reporter: "lcov",
     },
   },
 });
