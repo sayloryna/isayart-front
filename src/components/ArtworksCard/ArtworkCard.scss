@@ -1,0 +1,40 @@
+.delete-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #c6f2d4;
+  border-radius: 15px;
+  box-shadow: 2px 2px 3px 0 #57575777;
+}
+.favorite-button {
+  position: absolute;
+  left: 0;
+  bottom: -45px;
+}
+
+.artwork {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 2px black solid;
+
+  &__images {
+    position: relative;
+  }
+
+  &__picture {
+    object-fit: contain;
+    align-self: center;
+    background-color: #ececec53;
+    min-width: 337px;
+    min-height: 242px;
+  }
+
+  &__bottom {
+    text-align: end;
+    font-size: 1.5rem;
+  }
+}
