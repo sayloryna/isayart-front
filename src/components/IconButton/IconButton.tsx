@@ -1,3 +1,5 @@
+import "./IconButton.scss";
+
 type IconButonProps = {
   source: string;
   alternativeText: string;

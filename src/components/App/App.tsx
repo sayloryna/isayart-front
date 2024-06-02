@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import ArtworksClient from "../../client/ArtworksClient";
 import { useAppDispatch } from "../../redux/hooks";
 import { loadArtworksActionCreator } from "../../redux/artworksSlice/artworksSlice";
+import "./App.scss";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="app">
       <h1>IsayArt</h1>
     </div>
   );
