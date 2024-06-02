@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import IconButton from "./IconButton";
 import userEvent from "@testing-library/user-event";
+import IconButton from "./IconButton";
 
 const user = userEvent.setup();
 
@@ -8,6 +8,7 @@ describe("Given the IconButton component", () => {
   const buttonAction = vi.fn();
   const source = "/icon/heart-icon.svg";
   const alternativeText = "red heart";
+
   describe("When it receives an image with the alternative text:'red heart'", () => {
     test("Then it should show an image with the alternative text: 'red heart'", () => {
       const expectedAlternativeText = /red heart/i;

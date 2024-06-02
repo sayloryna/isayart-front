@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import ArtworksClient from "../../client/ArtworksClient";
 import { useAppDispatch } from "../../redux/hooks";
-import { loadArtworksActionCreator } from "../../redux/artworksSlice/artworksSlice";
+import ArtworksClient from "../../client/ArtworksClient";
 import ArtworkCard from "../ArtworksCard/ArtworkCard";
 import { mockMonaLisa, mockVitruvis } from "../../mocks/artworks";
+import { loadArtworksActionCreator } from "../../artworks/artworksSlice/artworksSlice";
 import "./App.scss";
 
 const App = () => {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     (async () => {
       const client = new ArtworksClient();
