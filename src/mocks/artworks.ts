@@ -33,4 +33,4 @@ export const mockVitruvis: Artwork = {
   location: "Venecia, Italia",
   medium: "plumín, pluma y tinta sobre papel",
 };
-export const mockArtworks = [mockMonaLisa];
+export const mockArtworks = [mockMonaLisa, mockVitruvis];
