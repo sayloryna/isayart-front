@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import ArtworksClient from "./client/ArtworksClient";
-import { useAppDispatch } from "./redux/hooks";
-import { loadArtworksActionCreator } from "./redux/artworksSlice/artworksSlice";
+import ArtworksClient from "../../client/ArtworksClient";
+import { useAppDispatch } from "../../redux/hooks";
+import { loadArtworksActionCreator } from "../../redux/artworksSlice/artworksSlice";
 
 const App = () => {
   const dispatch = useAppDispatch();
