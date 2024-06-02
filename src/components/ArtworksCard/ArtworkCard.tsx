@@ -40,8 +40,8 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
         </div>
       </div>
       <div className="artwork__bottom">
-        <span className="artwork__location">{`Madrid, `}</span>
-        <span className="artwork__date">{`${artwork.date}`}</span>
+        <span className="artwork__location">{`${artwork.location} `}</span>
+        <span className="artwork__date">{`${artwork.year}`}</span>
       </div>
     </article>
   );

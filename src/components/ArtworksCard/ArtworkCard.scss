@@ -2,10 +2,11 @@
   position: absolute;
   right: 0;
   top: 0;
-  background-color: #c6f2d4;
-  border-radius: 15px;
+  background-color: #ff0000;
+  border-radius: 25px;
   box-shadow: 2px 2px 3px 0 #57575777;
 }
+
 .favorite-button {
   position: absolute;
   left: 0;
@@ -18,8 +19,8 @@
   justify-items: center;
   text-align: center;
   gap: 8px;
-  padding: 5px 0;
-  border-bottom: 2px black solid;
+  padding: 5px 3px;
+  border-bottom: 2px #000000 solid;
 
   &__images {
     position: relative;

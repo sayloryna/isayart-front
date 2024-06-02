@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import ArtworksClient from "../../client/ArtworksClient";
 import { useAppDispatch } from "../../redux/hooks";
 import { loadArtworksActionCreator } from "../../redux/artworksSlice/artworksSlice";
-import "./App.scss";
 import ArtworkCard from "../ArtworksCard/ArtworkCard";
 import { mockMonaLisa, mockVitruvis } from "../../mocks/artworks";
+import "./App.scss";
 
 const App = () => {
   const dispatch = useAppDispatch();
