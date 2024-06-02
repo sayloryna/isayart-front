@@ -11,4 +11,5 @@ export interface Artwork {
   };
   isFavourite: boolean;
   location: string;
+  medium: string;
 }

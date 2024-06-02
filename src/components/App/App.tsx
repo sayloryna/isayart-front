@@ -1,13 +1,13 @@
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import ArtworksClient from "../../client/ArtworksClient";
-import { useAppDispatch } from "../../redux/hooks";
-import { loadArtworksActionCreator } from "../../redux/artworksSlice/artworksSlice";
-import ArtworkCard from "../ArtworksCard/ArtworkCard";
-import { mockMonaLisa, mockVitruvis } from "../../mocks/artworks";
+import { loadArtworksActionCreator } from "../../artworks/artworksSlice/artworksSlice";
+import ArtworksList from "../ArtworksList/ArtworksList";
 import "./App.scss";
 
 const App = () => {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     (async () => {
       const client = new ArtworksClient();
@@ -17,11 +17,12 @@ const App = () => {
     })();
   }, [dispatch]);
 
+  const { artworks } = useAppSelector((state) => state.artworks);
+
   return (
     <div className="app">
       <h1>IsayArt</h1>
-      <ArtworkCard artwork={mockMonaLisa} />
-      <ArtworkCard artwork={mockVitruvis} />
+      <ArtworksList artworks={artworks} />
     </div>
   );
 };

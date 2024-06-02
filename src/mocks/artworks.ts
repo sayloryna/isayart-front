@@ -1,4 +1,6 @@
-export const mockMonaLisa = {
+import { Artwork } from "../artworks/types";
+
+export const mockMonaLisa: Artwork = {
   _id: "monalisaId",
   title: "La Mona Lisa",
   author: "Leonardo da Vinci",
@@ -12,13 +14,15 @@ export const mockMonaLisa = {
   },
   isFavourite: false,
   location: "París, Francia",
+  medium: "Pintura al óleo sobre tabla de álamo",
 };
 
-export const mockVitruvis = {
+export const mockVitruvis: Artwork = {
   _id: "vitruvisId",
   title: "Vitruvis Man",
-  author: "Leonardo Da vinci",
-  description: "",
+  author: "Leonardo da Vinci",
+  description:
+    "Hombre desnudo con dentro de un circulo que muestra las proporciones del cuerpo humano",
   year: 1492,
   artworkUrl: "https://www.publico.es/uploads/2019/12/05/5de8f5ce26053.jpg",
   size: {
@@ -27,5 +31,6 @@ export const mockVitruvis = {
   },
   isFavourite: true,
   location: "Venecia, Italia",
+  medium: "plumín, pluma y tinta sobre papel",
 };
-export const mockArtworks = [mockMonaLisa];
+export const mockArtworks = [mockMonaLisa, mockVitruvis];
