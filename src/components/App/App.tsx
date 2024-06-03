@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import ArtworksClient from "../../client/ArtworksClient";
 import { loadArtworksActionCreator } from "../../artworks/artworksSlice/artworksSlice";
 import ArtworksList from "../ArtworksList/ArtworksList";
+import MainHeader from "../MainHeader/MainHeader";
 import "./App.scss";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
     (async () => {
       const client = new ArtworksClient();
       const artworks = await client.getAll();
+
       const action = loadArtworksActionCreator(artworks);
       dispatch(action);
     })();
@@ -21,7 +23,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>IsayArt</h1>
+      <MainHeader title="IsayArt" />
       <ArtworksList artworks={artworks} />
     </div>
   );
