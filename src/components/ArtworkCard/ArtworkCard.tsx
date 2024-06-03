@@ -1,6 +1,6 @@
 import { Artwork } from "../../artworks/types";
-import "./ArtworkCard.scss";
 import IconButton from "../IconButton/IconButton";
+import "./ArtworkCard.scss";
 
 interface ArtworkCardProps {
   artwork: Artwork;

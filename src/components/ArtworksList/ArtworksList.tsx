@@ -1,5 +1,6 @@
 import { Artwork } from "../../artworks/types";
-import ArtworkCard from "../ArtworksCard/ArtworkCard";
+import ArtworkCard from "../ArtworkCard/ArtworkCard";
+import "./ArtworksList.scss";
 
 interface ArtworkListProps {
   artworks: Artwork[];

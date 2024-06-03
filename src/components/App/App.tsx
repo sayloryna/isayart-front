@@ -1,10 +1,11 @@
-import "./App.scss";
+import MainHeader from "../MainHeader/MainHeader";
 import GalleryPage from "../../pages/GalleryPage";
+import "./App.scss";
 
 const App = () => {
   return (
     <div className="app">
-      <h1>IsayArt</h1>
+      <MainHeader title="IsayArt" />
       <GalleryPage />
     </div>
   );
