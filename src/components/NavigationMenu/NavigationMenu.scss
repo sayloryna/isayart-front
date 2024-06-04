@@ -1,8 +1,23 @@
+@use "../../styles/variables";
+
 .navigation-menu {
+  height: 90px;
+  border-bottom: variables.$container-border-bottom;
   &__links {
     display: flex;
     gap: 15px;
     font-size: 2rem;
+    width: 100vw;
+    padding: variables.$general-padding;
+    justify-content: space-between;
+
+    @media (width > variables.$screen-breakpoint) {
+      justify-content: space-around;
+    }
+  }
+  &__link {
+    display: flex;
+    align-items: center;
   }
 }
 

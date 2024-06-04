@@ -1,3 +1,5 @@
+@use "../../styles/variables";
+
 .delete-button {
   position: absolute;
   right: 0;
@@ -19,9 +21,9 @@
   justify-items: center;
   text-align: center;
   gap: 8px;
-  padding: 16px 16px;
-  border-bottom: 2px #000000 solid;
+  padding: 16px;
   width: 100%;
+  border-bottom: variables.$container-border-bottom;
 
   &__images {
     position: relative;
