@@ -1,0 +1,11 @@
+.navigation-menu {
+  &__links {
+    display: flex;
+    gap: 15px;
+    font-size: 2rem;
+  }
+}
+
+.active {
+  border-bottom: 3px solid #222;
+}
