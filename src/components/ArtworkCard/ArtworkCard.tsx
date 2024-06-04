@@ -6,6 +6,7 @@ interface ArtworkCardProps {
   artwork: Artwork;
 }
 const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
+  const buttonImageSize = "56";
   return (
     <article className="artwork">
       <h2 className="artwork__title">
@@ -20,24 +21,26 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
           width="200"
           height="200"
         />
-        <div className="delete-button">
-          <IconButton
-            action={() => {}}
-            alternativeText="borrar"
-            source="assets\icons\delete-bin.svg"
-          />
-        </div>
-        <div className="favorite-button">
-          <IconButton
-            action={() => {}}
-            alternativeText="añadir a favoritos"
-            source={
-              artwork.isFavourite
-                ? "assets/icons/heart-fill.svg"
-                : "assets/icons/heart-line.svg"
-            }
-          />
-        </div>
+        <IconButton
+          action={() => {}}
+          alternativeText="borrar"
+          source="assets\icons\delete-bin.svg"
+          className="delete-button"
+          height={buttonImageSize}
+          width={buttonImageSize}
+        />
+        <IconButton
+          action={() => {}}
+          alternativeText="añadir a favoritos"
+          source={
+            artwork.isFavourite
+              ? "assets/icons/heart-fill.svg"
+              : "assets/icons/heart-line.svg"
+          }
+          className="favorite-button"
+          height={buttonImageSize}
+          width={buttonImageSize}
+        />
       </div>
       <div className="artwork__bottom">
         <span className="artwork__location">{`${artwork.location} `}</span>
