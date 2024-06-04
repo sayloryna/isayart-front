@@ -1,12 +1,14 @@
+import { Outlet } from "react-router-dom";
 import MainHeader from "../MainHeader/MainHeader";
-import GalleryPage from "../../pages/GalleryPage";
+import NavigationMenu from "../NavigationMenu/NavigationMenu";
 import "./App.scss";
 
 const App = () => {
   return (
     <div className="app">
       <MainHeader title="IsayArt" />
-      <GalleryPage />
+      <NavigationMenu />
+      <Outlet />
     </div>
   );
 };
