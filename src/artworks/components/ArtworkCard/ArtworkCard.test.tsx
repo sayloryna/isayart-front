@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { mockMonaLisa } from "../../mocks/artworks";
+import { mockMonaLisa } from "../../../mocks/artworks";
 import ArtworkCard from "./ArtworkCard";
 
 describe("Given the ArtworkCard", () => {

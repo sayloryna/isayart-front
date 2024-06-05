@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { mockArtworks } from "../../mocks/artworks";
+
 import ArtworkList from "./ArtworksList";
+import { mockArtworks } from "../../../mocks/artworks";
 
 describe("Given the ArtworkList component", () => {
   describe("When it receive a list of artworks with 'la mona lisa' and 'Vitruvis man'", () => {

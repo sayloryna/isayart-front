@@ -1,4 +1,4 @@
-import { Artwork } from "../artworks/types";
+import { Artwork } from "../types";
 
 export interface ArtworksClientStructure {
   getAll(): Promise<Artwork[]>;

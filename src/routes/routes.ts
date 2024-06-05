@@ -1,5 +1,5 @@
 const routes = {
-  gallery: "/artworks",
+  artworks: "/artworks",
 };
 
 export default routes;
