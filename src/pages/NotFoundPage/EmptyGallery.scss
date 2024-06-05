@@ -1,0 +1,30 @@
+@use "../../styles/variables";
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  &__title {
+    font-size: 2rem;
+    padding: variables.$general-padding;
+
+    @media (width > variables.$screen-breakpoint) {
+      font-size: 3rem;
+    }
+  }
+
+  &__image {
+    width: 100vw;
+    height: auto;
+  }
+
+  &__code {
+    font-size: 3rem;
+    padding: variables.$general-padding;
+    align-self: flex-end;
+
+    @media (width > variables.$screen-breakpoint) {
+      font-size: 4rem;
+    }
+  }
+}
