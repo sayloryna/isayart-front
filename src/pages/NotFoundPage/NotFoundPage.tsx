@@ -3,9 +3,9 @@ import "./EmptyGallery.scss";
 const EmptyGallery = (): React.ReactElement => {
   return (
     <div className="not-found">
-      <h1 className="not-found__title">
+      <h2 className="not-found__title">
         La página a la que intentas acceder no existe
-      </h1>
+      </h2>
       <img
         className="not-found__image"
         src={"assets/not-found.png"}
@@ -13,6 +13,7 @@ const EmptyGallery = (): React.ReactElement => {
         width={"200"}
         height={"200"}
       />
+      <span className="not-found__code">404</span>
     </div>
   );
 };

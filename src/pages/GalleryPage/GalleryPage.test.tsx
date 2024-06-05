@@ -1,11 +1,10 @@
 import { Provider } from "react-redux";
-import { store } from "../store/store";
-import GalleryPage from "./GalleryPage";
 import { render, screen } from "@testing-library/react";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { ArtworksState } from "../artworks/artworksSlice/types";
-
-import { mockMonaLisa } from "../artworks/mocks/artworks";
+import { store } from "../../store/store";
+import { ArtworksState } from "../../artworks/artworksSlice/types";
+import { mockMonaLisa } from "../../artworks/mocks/artworks";
+import GalleryPage from "./GalleryPage";
 
 describe("given a GalleryPage component", () => {
   describe("When the artworks list is empty", () => {
@@ -15,7 +14,7 @@ describe("given a GalleryPage component", () => {
           <GalleryPage />
         </Provider>,
       );
-      const expectedText = /No hay obras en la Galería/i;
+      const expectedText = /no hay obras en la galería/i;
 
       const title = screen.getByRole("heading", {
         name: expectedText,
