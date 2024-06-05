@@ -1,12 +1,17 @@
+import "./EmptyGallery.scss";
+
 const EmptyGallery = (): React.ReactElement => {
   return (
-    <>
-      <h1 className="main-title">No hay obras en la Galería</h1>
+    <div className="empty-gallery">
+      <h1 className="empty-gallery__title">No hay obras en la Galería</h1>
       <img
-        src="/assets/empty-list.jpg"
-        alt=" Pintura de una Señora de epoca clásica tapandose la cara avergonzada "
+        className="empty-gallery__image"
+        src={"assets/empty-list.jpg"}
+        alt={"miau"}
+        width={"200"}
+        height={"200"}
       />
-    </>
+    </div>
   );
 };
 
