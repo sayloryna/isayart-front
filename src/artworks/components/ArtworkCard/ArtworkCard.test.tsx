@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { mockMonaLisa } from "../../../mocks/artworks";
 import ArtworkCard from "./ArtworkCard";
+import { mockMonaLisa } from "../../mocks/artworks";
 
 describe("Given the ArtworkCard", () => {
   describe("When it receives the mona Lisa", () => {
