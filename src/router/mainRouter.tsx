@@ -11,8 +11,8 @@ import routes from "../routes/routes";
 const mainRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route element={<Navigate to={routes.gallery} />} index />
-      <Route path={routes.gallery} element={<GalleryPage />} />
+      <Route element={<Navigate to={routes.artworks} />} index />
+      <Route path={routes.artworks} element={<GalleryPage />} />
     </Route>,
   ),
 );

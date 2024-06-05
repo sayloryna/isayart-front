@@ -1,4 +1,4 @@
-import { Artwork } from "../../artworks/types";
+import { Artwork } from "../../types";
 import ArtworkCard from "../ArtworkCard/ArtworkCard";
 import "./ArtworksList.scss";
 

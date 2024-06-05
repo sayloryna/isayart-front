@@ -1,4 +1,4 @@
-import { Artwork } from "../artworks/types";
+import { Artwork } from "../types";
 import { ArtworksClientStructure } from "./types";
 
 class ArtworksClient implements ArtworksClientStructure {

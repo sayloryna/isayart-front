@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { loadArtworksActionCreator } from "../artworks/artworksSlice/artworksSlice";
-import ArtworksClient from "../client/ArtworksClient";
-import ArtworksList from "../components/ArtworksList/ArtworksList";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import ArtworksClient from "../artworks/client/ArtworksClient";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import ArtworksList from "../artworks/components/ArtworksList/ArtworksList";
 
 const GalleryPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
