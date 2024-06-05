@@ -1,0 +1,20 @@
+@use "../../styles/variables";
+
+.empty-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  &__title {
+    font-size: 2rem;
+    padding: variables.$general-padding;
+
+    @media (width > variables.$screen-breakpoint) {
+      font-size: 3rem;
+    }
+  }
+
+  &__image {
+    width: 100vw;
+    height: auto;
+  }
+}

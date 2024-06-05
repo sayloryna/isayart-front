@@ -1,4 +1,4 @@
-import { Artwork } from "../artworks/types";
+import { Artwork } from "../types";
 
 export const mockMonaLisa: Artwork = {
   _id: "monalisaId",

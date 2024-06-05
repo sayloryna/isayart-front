@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import ArtworksClient from "../ArtworksClient";
-import { mockArtworks } from "../../../mocks/artworks";
 import { server } from "../../../mocks/node";
+import { mockArtworks } from "../../mocks/artworks";
 
 describe("Given a ArtworksClient getAll method", () => {
   describe("when its called and the API rest responds with a list of Artworks includin 'la mona Lisa'", () => {
