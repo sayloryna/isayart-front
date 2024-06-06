@@ -3,11 +3,12 @@
 .navigation-menu {
   height: 90px;
   border-bottom: variables.$container-border-bottom;
+  width: 100%;
   &__links {
     display: flex;
     gap: 15px;
     font-size: 2rem;
-    width: 100vw;
+
     padding: variables.$general-padding;
     justify-content: space-between;
 
