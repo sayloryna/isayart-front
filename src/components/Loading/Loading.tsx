@@ -7,7 +7,7 @@ const Loading = () => {
         <img
           className="loading__image"
           src="assets/loading.png"
-          alt="dibujo de artista con bigote bufanda y boina"
+          alt="dibujo de un artista con bigote bufanda y boina"
           width="100"
           height="100"
         />

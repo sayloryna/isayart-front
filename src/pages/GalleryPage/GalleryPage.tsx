@@ -4,7 +4,6 @@ import ArtworksClient from "../../artworks/client/ArtworksClient";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ArtworksList from "../../artworks/components/ArtworksList/ArtworksList";
 import EmptyGallery from "../../components/EmptyGallery/EmptyGallery";
-import Loading from "../../components/Loading/Loading";
 
 const GalleryPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
