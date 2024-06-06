@@ -8,7 +8,9 @@ const App = () => {
     <div className="app">
       <MainHeader title="IsayArt" />
       <NavigationMenu />
-      <Outlet />
+      <main className="main-content">
+        <Outlet />
+      </main>
     </div>
   );
 };

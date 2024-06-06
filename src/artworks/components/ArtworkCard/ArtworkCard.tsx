@@ -24,7 +24,7 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
         <IconButton
           action={() => {}}
           alternativeText="borrar"
-          source="assets\icons\delete-bin.svg"
+          source="assets/icons/delete-bin.svg"
           className="delete-button"
           height={buttonImageSize}
           width={buttonImageSize}
