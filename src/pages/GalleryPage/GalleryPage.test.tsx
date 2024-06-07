@@ -26,6 +26,8 @@ describe("given a GalleryPage component", () => {
 
   describe("When the artworks list contains 'la mona Lisa'", () => {
     test("Then it should show a heading with the text 'la mona Lisa'", () => {
+      const expectedText = /la mona lisa/i;
+
       const initialState: ArtworksState = {
         artworks: [mockMonaLisa],
       };
@@ -46,7 +48,6 @@ describe("given a GalleryPage component", () => {
           <GalleryPage />
         </Provider>,
       );
-      const expectedText = /la mona lisa/i;
 
       const title = screen.getByRole("heading", {
         name: expectedText,

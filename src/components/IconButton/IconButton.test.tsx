@@ -20,8 +20,6 @@ describe("Given the IconButton component", () => {
           source={source}
           alternativeText={alternativeText}
           className=""
-          height={size}
-          width={size}
         />,
       );
 
@@ -41,8 +39,6 @@ describe("Given the IconButton component", () => {
           source={source}
           alternativeText={alternativeText}
           className=""
-          height={size}
-          width={size}
         />,
       );
 

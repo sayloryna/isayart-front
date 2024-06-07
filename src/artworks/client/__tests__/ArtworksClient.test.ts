@@ -25,6 +25,7 @@ describe("Given a ArtworksClient getAll method", () => {
               });
             }),
           );
+
           const expectedError =
             "Unable to get Artworks: Request failed! Code: 500";
 
