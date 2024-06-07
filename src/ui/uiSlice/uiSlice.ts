@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { UiState } from "./types";
 
 const initialState: UiState = {
-  isLoading: false,
+  isLoading: true,
 };
 
 export const uiSlice = createSlice({
-  name: "Ui",
+  name: "ui",
   initialState,
   reducers: {
     showLoading: (currentState) => {

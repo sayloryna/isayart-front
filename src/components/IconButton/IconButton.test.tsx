@@ -8,7 +8,6 @@ describe("Given the IconButton component", () => {
   const buttonAction = vi.fn();
   const source = "/icon/heart-icon.svg";
   const alternativeText = "red heart";
-  const size = "56";
 
   describe("When it receives an image with the alternative text:'red heart'", () => {
     test("Then it should show an image with the alternative text: 'red heart'", () => {
