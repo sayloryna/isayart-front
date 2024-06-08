@@ -17,4 +17,6 @@ class ArtworksClient implements ArtworksClientStructure {
   }
 }
 
-export default ArtworksClient;
+const artworksClient = new ArtworksClient();
+
+export default artworksClient;

@@ -3,7 +3,7 @@ import "./Loading.scss";
 const Loading = () => {
   return (
     <div className="loading">
-      <div className="loading__container">
+      <div className="loading__content">
         <img
           className="loading__image"
           src="assets/loading.png"

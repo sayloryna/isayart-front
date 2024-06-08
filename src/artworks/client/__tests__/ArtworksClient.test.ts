@@ -1,11 +1,11 @@
 import { http, HttpResponse } from "msw";
-import ArtworksClient from "../ArtworksClient";
 import { server } from "../../../mocks/node";
 import { mockArtworks } from "../../mocks/artworks";
+import artworksClient from "../ArtworksClient";
 
 describe("Given a ArtworksClient getAll method", () => {
   describe("when its called and the API rest responds with a list of Artworks includin 'la mona Lisa'", () => {
-    const client = new ArtworksClient();
+    const client = artworksClient;
 
     test("Then it should return a list of artworks containing 'la Mona Lisa", async () => {
       const expectedArtworks = [...mockArtworks];
@@ -25,6 +25,7 @@ describe("Given a ArtworksClient getAll method", () => {
               });
             }),
           );
+
           const expectedError =
             "Unable to get Artworks: Request failed! Code: 500";
 
