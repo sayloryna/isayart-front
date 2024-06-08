@@ -1,21 +1,21 @@
 import "./IconButton.scss";
 
-type IconButonProps = {
+interface IconButonProps {
   source: string;
   alternativeText: string;
-  action: () => void;
   className: string;
-};
+  action: () => void;
+}
 
 const IconButton = ({
   source,
   alternativeText,
-  action,
   className,
+  action,
 }: IconButonProps): React.ReactElement => {
   return (
-    <button className={`button icon-button ${className}`} onClick={action}>
-      <img src={source} alt={alternativeText} width={"56"} height={"56"} />
+    <button className={`button button--icon ${className}`} onClick={action}>
+      <img src={source} alt={alternativeText} width="48" height="48" />
     </button>
   );
 };

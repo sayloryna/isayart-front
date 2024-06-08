@@ -20,10 +20,13 @@ const GalleryPage = (): React.ReactElement => {
 
   useEffect(() => {
     dispatch(showLoading);
+
     (async () => {
       const artworks = await artworksClient.getAll();
+
       const action = loadArtworksActionCreator(artworks);
       dispatch(action);
+
       dispatch(hideLoading);
     })();
   }, [dispatch]);
