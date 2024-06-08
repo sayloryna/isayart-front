@@ -36,6 +36,7 @@ const GalleryPage = (): React.ReactElement => {
     (async () => {
       try {
         dispatch(showLoading);
+
         const artworks = await artworksClient.getAll();
         const action = loadArtworksActionCreator(artworks);
         dispatch(action);
@@ -43,12 +44,19 @@ const GalleryPage = (): React.ReactElement => {
         dispatch(hideLoading);
       } catch (error) {
         notify(error as Error);
+        dispatch(hideLoading);
+
+        return <EmptyGallery />;
       }
     })();
   }, [dispatch]);
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
 
   if (artworks.length === 0) {
