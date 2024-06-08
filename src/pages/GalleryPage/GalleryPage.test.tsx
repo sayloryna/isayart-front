@@ -1,4 +1,6 @@
+import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { http } from "msw";
 import { render, screen } from "@testing-library/react";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { store } from "../../store/store";
@@ -6,6 +8,9 @@ import { ArtworksState } from "../../artworks/artworksSlice/types";
 import { mockMonaLisa } from "../../artworks/mocks/artworks";
 import GalleryPage from "./GalleryPage";
 import { UiState } from "../../ui/uiSlice/types";
+import { server } from "../../mocks/node";
+import routes from "../../routes/routes";
+import App from "../../components/App/App";
 
 describe("given a GalleryPage component", () => {
   const initialUIState: UiState = {
@@ -96,7 +101,7 @@ describe("given a GalleryPage component", () => {
       );
       const expectedText = /cargando/i;
 
-      const text = screen.getByText(expectedText);
+      const text = await screen.getByText(expectedText);
 
       expect(text).toBeVisible();
     });
@@ -114,6 +119,29 @@ describe("given a GalleryPage component", () => {
       const image = screen.getByAltText(expectedAlternativeText);
 
       expect(image).toBeInTheDocument();
+    });
+  });
+  describe("When the client throws the error cointaining: Unable to get Artworks", () => {
+    server.use(
+      http.get(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
+        throw new Error();
+      }),
+    );
+
+    test("then it should show a toast with the text:failed to fetch", () => {
+      const expectedText = /unable to get artworks/i;
+
+      render(
+        <Provider store={store}>
+          <MemoryRouter>
+            <App />
+          </MemoryRouter>
+        </Provider>,
+      );
+
+      const toast = screen.getByText(expectedText);
+
+      expect(toast).toBeVisible();
     });
   });
 });

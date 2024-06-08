@@ -9,6 +9,7 @@ import {
 } from "../../ui/uiSlice/uiSlice";
 import Loading from "../../components/Loading/Loading";
 import ArtworkList from "../../artworks/components/ArtworksList/ArtworksList";
+import { toast } from "react-toastify";
 
 const showLoading = showLoadingActionCreator();
 const hideLoading = hideLoadingActionCreator();
@@ -18,21 +19,44 @@ const GalleryPage = (): React.ReactElement => {
   const { artworks } = useAppSelector((state) => state.artworks);
   const { isLoading } = useAppSelector((state) => state.ui);
 
+  const notify = (error: Error) => {
+    toast.error(`${error.message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
   useEffect(() => {
-    dispatch(showLoading);
-
     (async () => {
-      const artworks = await artworksClient.getAll();
+      try {
+        dispatch(showLoading);
 
-      const action = loadArtworksActionCreator(artworks);
-      dispatch(action);
+        const artworks = await artworksClient.getAll();
+        const action = loadArtworksActionCreator(artworks);
+        dispatch(action);
 
-      dispatch(hideLoading);
+        dispatch(hideLoading);
+      } catch (error) {
+        notify(error as Error);
+        dispatch(hideLoading);
+
+        return <EmptyGallery />;
+      }
     })();
   }, [dispatch]);
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
 
   if (artworks.length === 0) {
