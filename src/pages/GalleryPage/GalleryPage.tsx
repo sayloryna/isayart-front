@@ -33,10 +33,9 @@ const GalleryPage = (): React.ReactElement => {
   };
 
   useEffect(() => {
-    dispatch(showLoading);
-
     (async () => {
       try {
+        dispatch(showLoading);
         const artworks = await artworksClient.getAll();
         const action = loadArtworksActionCreator(artworks);
         dispatch(action);
