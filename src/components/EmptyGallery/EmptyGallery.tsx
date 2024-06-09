@@ -6,7 +6,7 @@ const EmptyGallery = (): React.ReactElement => {
       <h2 className="empty-gallery__title">No hay obras en la Galería</h2>
       <img
         className="empty-gallery__image"
-        src={"assets/empty-list.jpg"}
+        src={"assets/empty-list.webp"}
         alt={
           "retrato de Madame François Buron leyendo un libro con expresion excandalizada"
         }
