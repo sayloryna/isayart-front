@@ -3,14 +3,14 @@ import "./IconButton.scss";
 interface IconButonProps {
   source: string;
   alternativeText: string;
-  className: string;
+  className?: string;
   action: () => void;
 }
 
 const IconButton = ({
   source,
   alternativeText,
-  className,
+  className = "",
   action,
 }: IconButonProps): React.ReactElement => {
   return (

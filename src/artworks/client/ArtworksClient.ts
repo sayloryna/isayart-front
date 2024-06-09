@@ -13,7 +13,9 @@ class ArtworksClient implements ArtworksClientStructure {
         throw new Error("Request failed! Code: " + response.status);
       }
 
-      return (await response.json()) as Artwork[];
+      const { artworks } = (await response.json()) as { artworks: Artwork[] };
+
+      return artworks;
     } catch (error) {
       throw new Error("Unable to get Artworks: " + (error as Error).message);
     }
