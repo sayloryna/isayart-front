@@ -44,6 +44,7 @@ const GalleryPage = (): React.ReactElement => {
         dispatch(hideLoading);
       } catch (error) {
         notify(error as Error);
+
         dispatch(hideLoading);
 
         return <EmptyGallery />;

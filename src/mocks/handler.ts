@@ -5,7 +5,9 @@ import { mockArtworks } from "../artworks/mocks/artworks.js";
 
 const handlers = [
   http.get(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
-    return HttpResponse.json<Artwork[]>(mockArtworks);
+    return HttpResponse.json<{ artworks: Artwork[] }>({
+      artworks: mockArtworks,
+    });
   }),
 ];
 
