@@ -29,6 +29,7 @@ const GalleryPage = (): React.ReactElement => {
       draggable: true,
       progress: undefined,
       theme: "colored",
+      style: { fontWeight: 600, color: "black", fontSize: "1.5rem" },
     });
   };
 
