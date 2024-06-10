@@ -5,15 +5,44 @@
   flex-direction: column;
   width: 100%;
   padding: variables.$general-padding;
+  font-size: 2rem;
+  gap: 5px;
 
   &__group {
-    font-size: 2rem;
     display: flex;
+    gap: 5px;
     flex-direction: column;
+
+    &--row {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   &__input {
     padding: 5px variables.$general-padding;
     background-color: #f1f1f1;
+
+    &--size {
+      width: 90px;
+    }
+  }
+}
+
+.size {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  justify-content: space-around;
+
+  &__labels {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 }

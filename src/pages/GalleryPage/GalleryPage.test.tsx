@@ -41,13 +41,13 @@ describe("given a GalleryPage component", () => {
           ui: mockUiSlice.reducer,
         },
       });
+      const expectedText = /no hay obras en la galería/i;
 
       render(
         <Provider store={mockStore}>
           <GalleryPage />
         </Provider>,
       );
-      const expectedText = /no hay obras en la galería/i;
 
       const title = screen.getByRole("heading", {
         name: expectedText,
@@ -92,7 +92,7 @@ describe("given a GalleryPage component", () => {
     });
   });
 
-  describe("When its laoding the artworks", () => {
+  describe("When its loading the artworks", () => {
     test("then it should show the text 'Cargando'", async () => {
       render(
         <Provider store={store}>
@@ -121,6 +121,7 @@ describe("given a GalleryPage component", () => {
       expect(image).toBeInTheDocument();
     });
   });
+
   describe("When the client throws the error cointaining: Unable to get Artworks", () => {
     server.use(
       http.get(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
