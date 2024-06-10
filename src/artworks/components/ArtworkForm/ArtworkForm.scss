@@ -1,0 +1,19 @@
+@use "../../../styles/variables";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: variables.$general-padding;
+
+  &__group {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    padding: 5px variables.$general-padding;
+    background-color: #f1f1f1;
+  }
+}
