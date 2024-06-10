@@ -53,11 +53,7 @@ const GalleryPage = (): React.ReactElement => {
   }, [dispatch]);
 
   if (isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <Loading />;
   }
 
   if (artworks.length === 0) {
