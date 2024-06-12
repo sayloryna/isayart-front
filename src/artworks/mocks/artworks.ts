@@ -1,4 +1,4 @@
-import { Artwork } from "../types";
+import { Artwork, NewArtworkData } from "../types";
 
 export const mockMonaLisa: Artwork = {
   _id: "monalisaId",
@@ -32,5 +32,11 @@ export const mockVitruvis: Artwork = {
   isFavourite: true,
   location: "Venecia, Italia",
   medium: "plumín, pluma y tinta sobre papel",
+};
+
+export const mockMonaLisaData: NewArtworkData = {
+  ...mockMonaLisa,
+  width: mockMonaLisa.size.width,
+  height: mockMonaLisa.size.height,
 };
 export const mockArtworks = [mockMonaLisa, mockVitruvis];

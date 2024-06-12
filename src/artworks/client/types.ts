@@ -1,5 +1,6 @@
-import { Artwork } from "../types";
+import { Artwork, NewArtworkData } from "../types";
 
 export interface ArtworksClientStructure {
   getAll(): Promise<Artwork[]>;
+  createArtwork(NewArtworkData: NewArtworkData): Promise<Artwork>;
 }
