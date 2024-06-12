@@ -3,14 +3,14 @@ import { Provider } from "react-redux";
 import { http } from "msw";
 import { render, screen } from "@testing-library/react";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { store } from "../../store/store";
-import { ArtworksState } from "../../artworks/artworksSlice/types";
-import { mockMonaLisa } from "../../artworks/mocks/artworks";
+import App from "../../../components/App/App";
+import { server } from "../../../mocks/node";
+import routes from "../../../routes/routes";
+import { store } from "../../../store/store";
+import { UiState } from "../../../ui/uiSlice/types";
+import { ArtworksState } from "../../artworksSlice/types";
+import { mockMonaLisa } from "../../mocks/artworks";
 import GalleryPage from "./GalleryPage";
-import { UiState } from "../../ui/uiSlice/types";
-import { server } from "../../mocks/node";
-import routes from "../../routes/routes";
-import App from "../../components/App/App";
 
 describe("given a GalleryPage component", () => {
   const initialUIState: UiState = {
