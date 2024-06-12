@@ -13,3 +13,9 @@ export interface Artwork {
   location: string;
   medium: string;
 }
+
+export interface NewArtworkData
+  extends Omit<Artwork, "_id" | "isFavourite" | "size"> {
+  width: number;
+  height: number;
+}
