@@ -3,14 +3,14 @@ import { Provider } from "react-redux";
 import { http } from "msw";
 import { render, screen } from "@testing-library/react";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { store } from "../../store/store";
-import { ArtworksState } from "../../artworks/artworksSlice/types";
-import { mockMonaLisa } from "../../artworks/mocks/artworks";
+import App from "../../../components/App/App";
+import { server } from "../../../mocks/node";
+import routes from "../../../routes/routes";
+import { store } from "../../../store/store";
+import { UiState } from "../../../ui/uiSlice/types";
+import { ArtworksState } from "../../artworksSlice/types";
+import { mockMonaLisa } from "../../mocks/artworks";
 import GalleryPage from "./GalleryPage";
-import { UiState } from "../../ui/uiSlice/types";
-import { server } from "../../mocks/node";
-import routes from "../../routes/routes";
-import App from "../../components/App/App";
 
 describe("given a GalleryPage component", () => {
   const initialUIState: UiState = {
@@ -41,13 +41,13 @@ describe("given a GalleryPage component", () => {
           ui: mockUiSlice.reducer,
         },
       });
+      const expectedText = /no hay obras en la galería/i;
 
       render(
         <Provider store={mockStore}>
           <GalleryPage />
         </Provider>,
       );
-      const expectedText = /no hay obras en la galería/i;
 
       const title = screen.getByRole("heading", {
         name: expectedText,
@@ -92,7 +92,7 @@ describe("given a GalleryPage component", () => {
     });
   });
 
-  describe("When its laoding the artworks", () => {
+  describe("When its loading the artworks", () => {
     test("then it should show the text 'Cargando'", async () => {
       render(
         <Provider store={store}>
@@ -121,6 +121,7 @@ describe("given a GalleryPage component", () => {
       expect(image).toBeInTheDocument();
     });
   });
+
   describe("When the client throws the error cointaining: Unable to get Artworks", () => {
     server.use(
       http.get(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {

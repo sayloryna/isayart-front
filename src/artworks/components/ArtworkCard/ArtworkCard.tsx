@@ -23,7 +23,7 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
         <IconButton
           action={() => {}}
           alternativeText="borrar"
-          source="assets/icons/delete-bin.png"
+          source="assets/icons/delete-bin.webp"
           className="delete-button"
         />
         <IconButton

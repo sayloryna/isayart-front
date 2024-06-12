@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { loadArtworksActionCreator } from "../../artworks/artworksSlice/artworksSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import EmptyGallery from "../../components/EmptyGallery/EmptyGallery";
-import artworksClient from "../../artworks/client/ArtworksClient";
+import { toast } from "react-toastify";
+import EmptyGallery from "../../../components/EmptyGallery/EmptyGallery";
+import Loading from "../../../components/Loading/Loading";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
   showLoadingActionCreator,
   hideLoadingActionCreator,
-} from "../../ui/uiSlice/uiSlice";
-import Loading from "../../components/Loading/Loading";
-import ArtworkList from "../../artworks/components/ArtworksList/ArtworksList";
-import { toast } from "react-toastify";
+} from "../../../ui/uiSlice/uiSlice";
+import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
+import artworksClient from "../../client/ArtworksClient";
+import ArtworkList from "../../components/ArtworksList/ArtworksList";
 
 const showLoading = showLoadingActionCreator();
 const hideLoading = hideLoadingActionCreator();

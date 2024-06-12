@@ -1,0 +1,64 @@
+@use "../../../styles/variables";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: variables.$general-padding;
+  font-size: 2rem;
+  gap: 5px;
+
+  &__group {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+
+    &--row {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__input {
+    padding: 5px variables.$general-padding;
+    background-color: #f1f1f1;
+
+    &--size {
+      max-width: 100px;
+    }
+
+    &--textarea {
+      height: 200px;
+    }
+  }
+
+  &__button {
+    margin-top: 30px;
+    align-self: center;
+    border: 3px solid #222;
+    font-size: 2rem;
+    padding: 0 16px;
+    width: fit-content;
+    background-color: #f5f5f5;
+  }
+}
+
+.size {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  justify-content: space-around;
+
+  &__labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+}
