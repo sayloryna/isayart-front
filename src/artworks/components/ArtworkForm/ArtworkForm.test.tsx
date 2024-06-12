@@ -7,163 +7,83 @@ describe("Given the ArtworkForm component", () => {
       render(<ArtworkForm />);
     });
 
-    test("Then it should show the text 'Autor' in a form label", () => {
+    test("Then it should show an 'autor' form control ", () => {
       const expectedText = /autor/i;
 
-      const authorLabel = screen.getByLabelText(expectedText);
-
-      expect(authorLabel).toBeVisible();
-    });
-
-    test("Then it should show an 'autor' form control ", () => {
-      const expectedName = /autor/i;
-
-      const authorInput = screen.getByRole("textbox", {
-        name: expectedName,
-      });
+      const authorInput = screen.getByLabelText(expectedText);
 
       expect(authorInput).toBeVisible();
     });
 
-    test("Then it should show the text 'Título' in a form label", () => {
+    test("Then it should show a 'título' form control ", () => {
       const expectedText = /título/i;
 
-      const titleLabel = screen.getByLabelText(expectedText);
-
-      expect(titleLabel).toBeVisible();
-    });
-
-    test("Then it should show an 'título' form control ", () => {
-      const expectedName = /título/i;
-
-      const titleInput = screen.getByRole("textbox", {
-        name: expectedName,
-      });
+      const titleInput = screen.getByLabelText(expectedText);
 
       expect(titleInput).toBeVisible();
-    });
-
-    test("Then it should show the text 'Ubicación' in a form label", () => {
-      const expectedText = /ubicación/i;
-
-      const locationLabel = screen.getByLabelText(expectedText);
-
-      expect(locationLabel).toBeVisible();
     });
 
     test("Then it should show an 'ubicación' form control ", () => {
-      const expectedName = /ubicación/i;
+      const expectedText = /ubicación/i;
 
-      const titleInput = screen.getByRole("textbox", {
-        name: expectedName,
-      });
+      const titleInput = screen.getByLabelText(expectedText);
 
       expect(titleInput).toBeVisible();
     });
 
-    test("Then it should show the text 'Alto' in a form label", () => {
+    test("Then it should show an 'alto' form control ", () => {
       const expectedText = /alto/i;
 
-      const heightLabel = screen.getByLabelText(expectedText);
-
-      expect(heightLabel).toBeVisible();
-    });
-
-    test("Then it should show an 'alto' form control ", () => {
-      const expectedName = /alto/i;
-
-      const heightInput = screen.getByRole("spinbutton", {
-        name: expectedName,
-      });
+      const heightInput = screen.getByLabelText(expectedText);
 
       expect(heightInput).toBeVisible();
     });
 
-    test("Then it should show the text 'Ancho' in a form label", () => {
+    test("Then it should show an 'ancho' form control ", () => {
       const expectedText = /ancho/i;
 
-      const widhtLabel = screen.getByLabelText(expectedText);
-
-      expect(widhtLabel).toBeVisible();
-    });
-
-    test("Then it should show an 'ancho' form control ", () => {
-      const expectedName = /ancho/i;
-
-      const weidhtInput = screen.getByRole("spinbutton", {
-        name: expectedName,
-      });
+      const weidhtInput = screen.getByLabelText(expectedText);
 
       expect(weidhtInput).toBeVisible();
     });
 
-    test("Then it should show the text 'Técnica' in a form label", () => {
+    test("Then it should show a 'técnica' form control ", () => {
       const expectedText = /técnica/i;
 
-      const mediumLabel = screen.getByLabelText(expectedText);
-
-      expect(mediumLabel).toBeVisible();
-    });
-
-    test("Then it should show an 'técnica' form control ", () => {
-      const expectedName = /técnica/i;
-
-      const mediumInput = screen.getByRole("textbox", {
-        name: expectedName,
-      });
+      const mediumInput = screen.getByLabelText(expectedText);
 
       expect(mediumInput).toBeVisible();
     });
 
-    test("Then it should show the text 'Url de la obra' in a form label", () => {
+    test("Then it should show an 'url de la obra' form control ", () => {
       const expectedText = /url de la obra/i;
 
-      const artworkUrlLabel = screen.getByLabelText(expectedText);
-
-      expect(artworkUrlLabel).toBeVisible();
-    });
-
-    test("Then it should show an 'url de la obra' form control ", () => {
-      const expectedName = /url de la obra/i;
-
-      const artworkUrlInput = screen.getByRole("textbox", {
-        name: expectedName,
-      });
+      const artworkUrlInput = screen.getByLabelText(expectedText);
 
       expect(artworkUrlInput).toBeVisible();
     });
 
-    test("Then it should show the text 'Descripción' in a form label", () => {
+    test("Then it should show an 'descripción' form control ", () => {
       const expectedText = /descripción/i;
 
-      const descriptionLabel = screen.getByLabelText(expectedText);
-
-      expect(descriptionLabel).toBeVisible();
-    });
-
-    test("Then it should show an 'descripción' form control ", () => {
-      const expectedName = /descripción/i;
-
-      const descriptionInput = screen.getByRole("textbox", {
-        name: expectedName,
-      });
+      const descriptionInput = screen.getByLabelText(expectedText);
 
       expect(descriptionInput).toBeVisible();
     });
 
-    test("Then it should show the text 'Año de creación' in a form label", () => {
+    test("Then it should an 'Año de creación' form control", () => {
       const expectedText = /año de creación/i;
 
-      const descriptionLabel = screen.getByLabelText(expectedText);
+      const descriptionInput = screen.getByLabelText(expectedText);
 
-      expect(descriptionLabel).toBeVisible();
+      expect(descriptionInput).toBeVisible();
     });
 
     test("Then it should show a button 'Guardar'", () => {
-      const exectedName = /guardar/i;
+      const expectedName = /guardar/i;
 
       const button = screen.getByRole("button", {
-        name: exectedName,
+        name: expectedName,
       });
 
       expect(button).toBeVisible();

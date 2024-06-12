@@ -15,7 +15,14 @@ export interface Artwork {
 }
 
 export type ArtworkData = Omit<Artwork, "_id" | "isFavourite">;
-export interface NewArtworkData extends Omit<ArtworkData, "size"> {
+export interface NewArtworkData {
+  title: string;
+  author: string;
+  description: string;
+  year: number;
+  artworkUrl: string;
   width: number;
   height: number;
+  location: string;
+  medium: string;
 }
