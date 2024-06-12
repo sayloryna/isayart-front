@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { NewArtworkData } from "../../types";
 import "./ArtworkForm.scss";
+import artworksClient from "../../client/ArtworksClient";
 
 const ArtworkForm = (): React.ReactElement => {
   const [newArtworkData, setNewArtworkData] = useState<NewArtworkData>({
     title: "",
-    author: "",
     location: "",
+    author: "",
     description: "",
     artworkUrl: "",
     medium: "",
@@ -29,6 +30,20 @@ const ArtworkForm = (): React.ReactElement => {
       className="form"
       onSubmit={(event) => {
         event.preventDefault();
+
+        artworksClient.createArtwork(newArtworkData);
+
+        setNewArtworkData({
+          title: "",
+          author: "",
+          location: "",
+          description: "",
+          artworkUrl: "",
+          medium: "",
+          year: 2024,
+          height: 0,
+          width: 0,
+        });
       }}
     >
       <div className="form__group">
@@ -63,6 +78,7 @@ const ArtworkForm = (): React.ReactElement => {
           value={newArtworkData.location}
         />
       </div>
+
       <span>Dimensiones:</span>
       <div className="size">
         <div className="size__labels">
