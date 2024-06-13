@@ -11,7 +11,7 @@ const ArtworkForm = (): React.ReactElement => {
     description: "",
     artworkUrl: "",
     medium: "",
-    year: 2024,
+    year: 0,
     height: 0,
     width: 0,
   });
@@ -25,6 +25,7 @@ const ArtworkForm = (): React.ReactElement => {
         [event.target.id]: event.target.value,
       };
     });
+
   return (
     <form
       className="form"
@@ -40,7 +41,7 @@ const ArtworkForm = (): React.ReactElement => {
           description: "",
           artworkUrl: "",
           medium: "",
-          year: 2024,
+          year: 0,
           height: 0,
           width: 0,
         });
@@ -89,7 +90,7 @@ const ArtworkForm = (): React.ReactElement => {
           <div>
             <input
               required
-              className="form__input form__input--size"
+              className="form__input form__input--row"
               id="height"
               type="number"
               onChange={handleChange}
@@ -100,7 +101,7 @@ const ArtworkForm = (): React.ReactElement => {
           <div>
             <input
               required
-              className="form__input form__input--size"
+              className="form__input form__input--row"
               id="width"
               type="number"
               onChange={handleChange}
@@ -154,7 +155,7 @@ const ArtworkForm = (): React.ReactElement => {
         />
       </div>
       <button type="submit" className="form__button">
-        GUARDAR
+        Guardar
       </button>
     </form>
   );
