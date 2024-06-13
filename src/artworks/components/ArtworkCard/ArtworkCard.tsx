@@ -19,6 +19,7 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
           alt={artwork.description}
           width="200"
           height="200"
+          loading="lazy"
         />
         <IconButton
           action={() => {}}
