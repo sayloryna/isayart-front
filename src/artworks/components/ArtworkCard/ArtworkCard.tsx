@@ -19,11 +19,12 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
           alt={artwork.description}
           width="200"
           height="200"
+          loading="lazy"
         />
         <IconButton
           action={() => {}}
           alternativeText="borrar"
-          source="assets/icons/delete-bin.webp"
+          source="assets/icons/delete-bin.svg"
           className="delete-button"
         />
         <IconButton
