@@ -7,10 +7,8 @@ import {
 import { Suspense } from "react";
 import App from "../components/App/App";
 import routes from "../routes/routes";
-import { ArtworkFormPage } from "./lazyImports";
-import { GalleryPage } from "./lazyImports";
 import Loading from "../components/Loading/Loading";
-import { NotFoundPage } from "./lazyImports";
+import { GalleryPage, ArtworkFormPage, NotFoundPage } from "./lazyImports";
 
 const mainRouter = createBrowserRouter(
   createRoutesFromElements(
