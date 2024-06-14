@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import { NewArtworkData } from "../../types";
 import "./ArtworkForm.scss";
-import artworksClient from "../../client/ArtworksClient";
 
-const ArtworkForm = (): React.ReactElement => {
-  const [newArtworkData, setNewArtworkData] = useState<NewArtworkData>({
-    title: "",
-    location: "",
-    author: "",
-    description: "",
-    artworkUrl: "",
-    medium: "",
-    year: 0,
-    height: 0,
-    width: 0,
-  });
+interface ArtworkFormProps {
+  submit: (newArtworkData: NewArtworkData) => void;
+}
+
+const artworkFormInitialState = {
+  title: "",
+  location: "",
+  author: "",
+  description: "",
+  artworkUrl: "",
+  medium: "",
+  year: 0,
+  height: 0,
+  width: 0,
+};
+
+const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
+  const [newArtworkData, setNewArtworkData] = useState<NewArtworkData>(
+    artworkFormInitialState,
+  );
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -32,19 +39,9 @@ const ArtworkForm = (): React.ReactElement => {
       onSubmit={(event) => {
         event.preventDefault();
 
-        artworksClient.createArtwork(newArtworkData);
+        submit(newArtworkData);
 
-        setNewArtworkData({
-          title: "",
-          author: "",
-          location: "",
-          description: "",
-          artworkUrl: "",
-          medium: "",
-          year: 0,
-          height: 0,
-          width: 0,
-        });
+        setNewArtworkData(artworkFormInitialState);
       }}
     >
       <div className="form__group">
