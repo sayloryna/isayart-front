@@ -40,8 +40,6 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
         event.preventDefault();
 
         submit(newArtworkData);
-
-        setNewArtworkData(artworkFormInitialState);
       }}
     >
       <div className="form__group">
@@ -123,7 +121,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
         <label htmlFor="artworkUrl">Url de la Obra: </label>
         <input
           required
-          className="form__input"
+          className="form__input form__input--url"
           id="artworkUrl"
           type="url"
           onChange={handleChange}

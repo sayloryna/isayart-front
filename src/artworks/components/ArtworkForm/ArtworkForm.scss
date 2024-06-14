@@ -26,10 +26,16 @@
 
     &--row {
       max-width: 100px;
+      text-align: center;
     }
 
     &--textarea {
       height: 200px;
+      text-transform: none;
+    }
+
+    &--url {
+      text-transform: none;
     }
   }
 

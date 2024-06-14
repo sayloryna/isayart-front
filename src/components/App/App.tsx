@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MainHeader from "../MainHeader/MainHeader";
 import NavigationMenu from "../NavigationMenu/NavigationMenu";
@@ -15,15 +15,16 @@ const App = () => {
       </main>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={1000}
         hideProgressBar
-        newestOnTop={false}
+        newestOnTop={true}
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
+        pauseOnFocusLoss={false}
         draggable
         pauseOnHover
         theme="colored"
+        transition={Bounce}
       />
     </div>
   );
