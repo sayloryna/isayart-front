@@ -4,7 +4,7 @@ import "./ArtworkFormPage.scss";
 import { NewArtworkData } from "../../types";
 import artworksClient from "../../client/ArtworksClient";
 import { toast } from "react-toastify";
-import CreateArtworkSuccess from "./CreateArtworkSuccess";
+import CreateArtworkSuccess from "./toast/CreateArtworkSuccess";
 
 const notify = (error?: Error) => {
   if (error) {
