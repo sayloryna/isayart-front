@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import ArtworkForm from "./ArtworkForm";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Given the ArtworkForm component", () => {
   describe("When its rendered", () => {
     beforeEach(() => {
-      render(<ArtworkForm />);
+      render(
+        <MemoryRouter>
+          <ArtworkForm submit={() => {}} />
+        </MemoryRouter>,
+      );
     });
 
     test("Then it should show an 'autor' form control ", () => {
@@ -42,9 +47,9 @@ describe("Given the ArtworkForm component", () => {
     test("Then it should show an 'ancho' form control ", () => {
       const expectedText = /ancho/i;
 
-      const weidhtInput = screen.getByLabelText(expectedText);
+      const widthInput = screen.getByLabelText(expectedText);
 
-      expect(weidhtInput).toBeVisible();
+      expect(widthInput).toBeVisible();
     });
 
     test("Then it should show a 'técnica' form control ", () => {

@@ -1,37 +1,16 @@
 import React from "react";
 import ArtworkForm from "../../components/ArtworkForm/ArtworkForm";
-import "./ArtworkFormPage.scss";
 import { NewArtworkData } from "../../types";
 import artworksClient from "../../client/ArtworksClient";
-import { toast } from "react-toastify";
-import CreateArtworkSuccess from "./toast/CreateArtworkSuccess";
-
-const notify = (error?: Error) => {
-  if (error) {
-    toast.error(`${error.message}`, {
-      position: "top-right",
-      style: { fontWeight: 600, color: "black", fontSize: "1.5rem" },
-    });
-    return;
-  }
-
-  toast(<CreateArtworkSuccess />, {
-    position: "top-center",
-    style: {
-      fontWeight: 600,
-      fontSize: "1.5rem",
-      width: "fit-content",
-    },
-    draggable: true,
-  });
-};
+import { notifyError, notify } from "./toasts/notify";
+import "./ArtworkFormPage.scss";
 
 const createArtwork = async (newArtworkData: NewArtworkData): Promise<void> => {
   try {
     await artworksClient.createArtwork(newArtworkData);
     notify();
   } catch (error) {
-    notify(error as Error);
+    notifyError(error as Error);
   }
 };
 

@@ -12,20 +12,20 @@ const App = () => {
       <NavigationMenu />
       <main className="main-content">
         <Outlet />
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
       </main>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Bounce}
-      />
     </div>
   );
 };
