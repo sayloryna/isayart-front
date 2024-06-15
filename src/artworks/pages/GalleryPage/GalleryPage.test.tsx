@@ -1,4 +1,4 @@
-import { RouterProvider } from "react-router-dom";
+import { MemoryRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { http } from "msw";
 import { render, screen } from "@testing-library/react";
@@ -45,7 +45,9 @@ describe("given a GalleryPage component", () => {
 
       render(
         <Provider store={mockStore}>
-          <GalleryPage />
+          <MemoryRouter>
+            <GalleryPage />
+          </MemoryRouter>
         </Provider>,
       );
 
@@ -80,7 +82,9 @@ describe("given a GalleryPage component", () => {
 
       render(
         <Provider store={mockStore}>
-          <GalleryPage />
+          <MemoryRouter>
+            <GalleryPage />
+          </MemoryRouter>
         </Provider>,
       );
 
@@ -96,7 +100,9 @@ describe("given a GalleryPage component", () => {
     test("then it should show the text 'Cargando'", async () => {
       render(
         <Provider store={store}>
-          <GalleryPage />
+          <MemoryRouter>
+            <GalleryPage />
+          </MemoryRouter>
         </Provider>,
       );
       const expectedText = /cargando/i;
@@ -109,7 +115,9 @@ describe("given a GalleryPage component", () => {
     test("then it should show an image with the alternative text 'dibujo de un artista con bigote bufanda y boina'", () => {
       render(
         <Provider store={store}>
-          <GalleryPage />
+          <MemoryRouter>
+            <GalleryPage />
+          </MemoryRouter>
         </Provider>,
       );
 
