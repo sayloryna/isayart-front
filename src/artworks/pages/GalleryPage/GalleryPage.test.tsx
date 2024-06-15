@@ -1,9 +1,8 @@
-import { MemoryRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { http } from "msw";
 import { render, screen } from "@testing-library/react";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import App from "../../../components/App/App";
 import { server } from "../../../mocks/node";
 import routes from "../../../routes/routes";
 import { store } from "../../../store/store";
@@ -11,6 +10,7 @@ import { UiState } from "../../../ui/uiSlice/types";
 import { ArtworksState } from "../../artworksSlice/types";
 import { mockMonaLisa } from "../../mocks/artworks";
 import GalleryPage from "./GalleryPage";
+import mainRouter from "../../../router/mainRouter";
 
 describe("given a GalleryPage component", () => {
   const initialUIState: UiState = {
@@ -134,9 +134,7 @@ describe("given a GalleryPage component", () => {
 
       render(
         <Provider store={store}>
-          <MemoryRouter>
-            <App />
-          </MemoryRouter>
+          <RouterProvider router={mainRouter} />
         </Provider>,
       );
 

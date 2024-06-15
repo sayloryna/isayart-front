@@ -17,14 +17,7 @@ export default defineConfig({
     environment: "jsdom",
     coverage: {
       include: ["src/**/*.{ts,tsx}"],
-      exclude: [
-        "src/**/**/main.tsx",
-        "src/setupTests.ts",
-        "**/src/components/App/App.tsx",
-        "**/src/routes/routes.tsx",
-        "**/src/router/mainRouter.tsx",
-        "**/src/router/lazyImports.ts",
-      ],
+      exclude: ["src/**/**/main.tsx", "src/setupTests.ts"],
       reporter: "lcov",
     },
   },

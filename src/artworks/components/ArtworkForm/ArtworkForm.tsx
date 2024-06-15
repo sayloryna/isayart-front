@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import { NewArtworkData } from "../../types";
 import "./ArtworkForm.scss";
-import artworksClient from "../../client/ArtworksClient";
+import { useNavigate } from "react-router-dom";
 
-const ArtworkForm = (): React.ReactElement => {
-  const [newArtworkData, setNewArtworkData] = useState<NewArtworkData>({
-    title: "",
-    location: "",
-    author: "",
-    description: "",
-    artworkUrl: "",
-    medium: "",
-    year: 0,
-    height: 0,
-    width: 0,
-  });
+interface ArtworkFormProps {
+  submit: (newArtworkData: NewArtworkData) => void;
+}
+
+const artworkFormInitialState = {
+  title: "",
+  location: "",
+  author: "",
+  description: "",
+  artworkUrl: "",
+  medium: "",
+  year: 0,
+  height: 0,
+  width: 0,
+};
+
+const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
+  const [newArtworkData, setNewArtworkData] = useState<NewArtworkData>(
+    artworkFormInitialState,
+  );
+  const navigate = useNavigate();
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -32,19 +41,10 @@ const ArtworkForm = (): React.ReactElement => {
       onSubmit={(event) => {
         event.preventDefault();
 
-        artworksClient.createArtwork(newArtworkData);
+        submit(newArtworkData);
 
-        setNewArtworkData({
-          title: "",
-          author: "",
-          location: "",
-          description: "",
-          artworkUrl: "",
-          medium: "",
-          year: 0,
-          height: 0,
-          width: 0,
-        });
+        setNewArtworkData(artworkFormInitialState);
+        navigate("/artworks");
       }}
     >
       <div className="form__group">
@@ -126,7 +126,7 @@ const ArtworkForm = (): React.ReactElement => {
         <label htmlFor="artworkUrl">Url de la Obra: </label>
         <input
           required
-          className="form__input"
+          className="form__input form__input--url"
           id="artworkUrl"
           type="url"
           onChange={handleChange}

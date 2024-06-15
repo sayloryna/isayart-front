@@ -3,16 +3,10 @@ import { toast } from "react-toastify";
 import EmptyGallery from "../../../components/EmptyGallery/EmptyGallery";
 import Loading from "../../../components/Loading/Loading";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import {
-  showLoadingActionCreator,
-  hideLoadingActionCreator,
-} from "../../../ui/uiSlice/uiSlice";
 import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
 import artworksClient from "../../client/ArtworksClient";
 import ArtworkList from "../../components/ArtworksList/ArtworksList";
-
-const showLoading = showLoadingActionCreator();
-const hideLoading = hideLoadingActionCreator();
+import { showLoading, hideLoading } from "../../../ui/uiSlice/actions";
 
 const GalleryPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
