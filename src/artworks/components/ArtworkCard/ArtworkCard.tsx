@@ -3,6 +3,7 @@ import IconButton from "../../../components/IconButton/IconButton";
 import artworksClient from "../../client/ArtworksClient";
 import { useAppDispatch } from "../../../store/hooks";
 import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
+import { notify, notifyError } from "./toast/notify";
 import "./ArtworkCard.scss";
 
 interface ArtworkCardProps {
@@ -10,7 +11,12 @@ interface ArtworkCardProps {
 }
 
 const deleteArtwork = async (artworkId: string): Promise<void> => {
-  await artworksClient.deleteArtworkById(artworkId);
+  try {
+    await artworksClient.deleteArtworkById(artworkId);
+    notify();
+  } catch (error) {
+    notifyError(error as Error);
+  }
 };
 
 const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
