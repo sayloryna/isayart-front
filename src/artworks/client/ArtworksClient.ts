@@ -4,6 +4,29 @@ import { Artwork, NewArtworkData } from "../types";
 import { ArtworksClientStructure } from "./types";
 
 class ArtworksClient implements ArtworksClientStructure {
+  async deleteArtworkById(artworkId: string): Promise<Artwork> {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}${routes.artworks}/${artworkId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed! Code: " + response.status);
+      }
+
+      const { deletedArtwork } = (await response.json()) as {
+        deletedArtwork: Artwork;
+      };
+
+      return deletedArtwork;
+    } catch (error) {
+      throw new Error((error as { message: string }).message);
+    }
+  }
   async getAll(): Promise<Artwork[]> {
     try {
       const response = await fetch(
