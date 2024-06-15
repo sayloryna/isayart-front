@@ -154,7 +154,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
           value={newArtworkData.year}
         />
       </div>
-      <button type="submit" className="form__button">
+      <button type="submit" className="button form__button">
         Guardar
       </button>
     </form>
