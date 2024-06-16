@@ -27,6 +27,25 @@ class ArtworksClient implements ArtworksClientStructure {
       throw new Error((error as { message: string }).message);
     }
   }
+  async getArtworkById(artworkId: string): Promise<Artwork> {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}${routes.artworks}/${artworkId}`,
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed! Code: " + response.status);
+      }
+
+      const { artwork } = (await response.json()) as {
+        artwork: Artwork;
+      };
+
+      return artwork;
+    } catch (error) {
+      throw new Error((error as { message: string }).message);
+    }
+  }
   async getAll(): Promise<Artwork[]> {
     try {
       const response = await fetch(

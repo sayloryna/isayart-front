@@ -4,6 +4,7 @@ import {
   mockArtworks,
   mockMonaLisa,
   mockMonaLisaData,
+  mockVitruvis,
 } from "../../mocks/artworks";
 import artworksClient from "../ArtworksClient";
 import routes from "../../../routes/routes";
@@ -72,7 +73,7 @@ describe("Given an ArtworksClient", () => {
     });
   });
 
-  describe("WHen its createArtworkById method is called with la monaLisaId", () => {
+  describe("When its createArtworkById method is called with la monaLisaId", () => {
     describe("And the API rest responds with  the artwork 'la mona lisa'", () => {
       test("Then it should return  the artwork 'la mona lisa'", async () => {
         const deletedArtwork = await client.deleteArtworkById(mockMonaLisa._id);
@@ -102,6 +103,41 @@ describe("Given an ArtworksClient", () => {
 
         expect(async () => {
           await client.deleteArtworkById(mockMonaLisa._id);
+        }).rejects.toThrowError(expectedError);
+      });
+    });
+  });
+
+  describe("When its getArtworkById method is called with la vitruvisId", () => {
+    describe("And the API rest responds with  the artwork 'vitruvis man'", () => {
+      test("Then it should return  the artwork 'vitruvis man'", async () => {
+        const artwork = await client.getArtworkById(mockVitruvis._id);
+
+        expect(artwork).toEqual(mockVitruvis);
+      });
+    });
+
+    describe("And when the API rest responds with the status 400", () => {
+      test("Then it should throw the error: 'Request failed! Code: 404'", async () => {
+        const statusCode = 400;
+        const expectedError = new Error(`Request failed! Code: ${statusCode}`);
+
+        server.use(
+          http.get(
+            `${import.meta.env.VITE_API_URL}${routes.artworks}/${mockVitruvis._id}`,
+            () => {
+              return HttpResponse.json<{ error: Error }>(
+                {
+                  error: new Error(),
+                },
+                { status: statusCode },
+              );
+            },
+          ),
+        );
+
+        expect(async () => {
+          await client.getArtworkById(mockVitruvis._id);
         }).rejects.toThrowError(expectedError);
       });
     });
