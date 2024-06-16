@@ -71,4 +71,39 @@ describe("Given an ArtworksClient", () => {
       });
     });
   });
+
+  describe("WHen its createArtworkById method is called with la monaLisaId", () => {
+    describe("And the API rest responds with  the artwork 'la mona lisa'", () => {
+      test("Then it should return  the artwork 'la mona lisa'", async () => {
+        const deletedArtwork = await client.deleteArtworkById(mockMonaLisa._id);
+
+        expect(deletedArtwork).toEqual(mockMonaLisa);
+      });
+    });
+
+    describe("And the API rest responds with  the status 404", () => {
+      test("Then it should throw the error: 'Request failed! Code: 404'", async () => {
+        const statusCode = 404;
+        const expectedError = new Error(`Request failed! Code: ${statusCode}`);
+
+        server.use(
+          http.delete(
+            `${import.meta.env.VITE_API_URL}${routes.artworks}/${mockMonaLisa._id}`,
+            () => {
+              return HttpResponse.json<{ error: Error }>(
+                {
+                  error: new Error(),
+                },
+                { status: statusCode },
+              );
+            },
+          ),
+        );
+
+        expect(async () => {
+          await client.deleteArtworkById(mockMonaLisa._id);
+        }).rejects.toThrowError(expectedError);
+      });
+    });
+  });
 });

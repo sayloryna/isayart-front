@@ -7,7 +7,7 @@ describe("Given the ArtworkForm component", () => {
     beforeEach(() => {
       render(
         <MemoryRouter>
-          <ArtworkForm submit={() => {}} />
+          <ArtworkForm submit={async () => {}} />
         </MemoryRouter>,
       );
     });

@@ -1,6 +1,6 @@
 import "./IconButton.scss";
 
-interface IconButonProps {
+interface IconButtonProps {
   source: string;
   alternativeText: string;
   className?: string;
@@ -12,7 +12,7 @@ const IconButton = ({
   alternativeText,
   className = "",
   action,
-}: IconButonProps): React.ReactElement => {
+}: IconButtonProps): React.ReactElement => {
   return (
     <button className={`button button--icon ${className}`} onClick={action}>
       <img src={source} alt={alternativeText} width="48" height="48" />

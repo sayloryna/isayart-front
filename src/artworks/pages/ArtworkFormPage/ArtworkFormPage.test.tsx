@@ -63,7 +63,7 @@ describe("Given the ArtworkFormPage", () => {
 
     describe("And the artwork is created", () => {
       test("Then it should show the text 'obra creada con éxito'", async () => {
-        const expectedMessage = /obra creada con éxito/i;
+        const expectedMessage = /obra añadida/i;
 
         await fillAndSubmitForm();
 

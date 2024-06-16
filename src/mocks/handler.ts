@@ -15,6 +15,15 @@ const handlers = [
       newArtwork: mockMonaLisa,
     });
   }),
+
+  http.delete(
+    `${import.meta.env.VITE_API_URL}${routes.artworks}/${mockMonaLisa._id}`,
+    () => {
+      return HttpResponse.json<{ deletedArtwork: Artwork }>({
+        deletedArtwork: mockMonaLisa,
+      });
+    },
+  ),
 ];
 
 export default handlers;

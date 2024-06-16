@@ -4,7 +4,7 @@ import "./ArtworkForm.scss";
 import { useNavigate } from "react-router-dom";
 
 interface ArtworkFormProps {
-  submit: (newArtworkData: NewArtworkData) => void;
+  submit: (newArtworkData: NewArtworkData) => Promise<void>;
 }
 
 const artworkFormInitialState = {
@@ -38,10 +38,10 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
   return (
     <form
       className="form"
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
 
-        submit(newArtworkData);
+        await submit(newArtworkData);
 
         setNewArtworkData(artworkFormInitialState);
         navigate("/artworks");
@@ -154,7 +154,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
           value={newArtworkData.year}
         />
       </div>
-      <button type="submit" className="form__button">
+      <button type="submit" className="button form__button">
         Guardar
       </button>
     </form>

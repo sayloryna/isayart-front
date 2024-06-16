@@ -1,11 +1,27 @@
 import { Artwork } from "../../types";
 import IconButton from "../../../components/IconButton/IconButton";
+import artworksClient from "../../client/ArtworksClient";
+import { useAppDispatch } from "../../../store/hooks";
+import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
+import { notify, notifyError } from "./toast/notify";
 import "./ArtworkCard.scss";
 
 interface ArtworkCardProps {
   artwork: Artwork;
 }
+
+const deleteArtwork = async (artworkId: string): Promise<void> => {
+  try {
+    await artworksClient.deleteArtworkById(artworkId);
+    notify();
+  } catch (error) {
+    notifyError(error as Error);
+  }
+};
+
 const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
+  const dispatch = useAppDispatch();
+
   return (
     <article className="artwork">
       <h2 className="artwork__title">
@@ -22,7 +38,15 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
           loading="lazy"
         />
         <IconButton
-          action={() => {}}
+          action={async () => {
+            await deleteArtwork(artwork._id);
+
+            const artworks = await artworksClient.getAll();
+
+            const action = loadArtworksActionCreator(artworks);
+
+            dispatch(action);
+          }}
           alternativeText="borrar"
           source="assets/icons/delete-bin.svg"
           className="delete-button"

@@ -13,8 +13,8 @@ const App = () => {
       <main className="main-content">
         <Outlet />
         <ToastContainer
-          position="top-right"
-          autoClose={1000}
+          position="top-center"
+          autoClose={2000}
           hideProgressBar
           newestOnTop={true}
           closeOnClick
