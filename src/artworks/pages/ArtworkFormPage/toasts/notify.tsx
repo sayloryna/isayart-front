@@ -13,7 +13,6 @@ export const notify = () => {
     style: {
       fontWeight: 600,
       fontSize: "1.5rem",
-      width: "fit-content",
     },
     draggable: true,
   });
