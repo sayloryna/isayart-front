@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { NewArtworkData } from "../../types";
-import "./ArtworkForm.scss";
 import { useNavigate } from "react-router-dom";
+import "./ArtworkForm.scss";
 
 interface ArtworkFormProps {
   submit: (newArtworkData: NewArtworkData) => Promise<void>;
 }
 
-const artworkFormInitialState = {
+const artworkFormInitialState: NewArtworkData = {
   title: "",
   location: "",
   author: "",
   description: "",
   artworkUrl: "",
   medium: "",
-  year: 0,
+  year: new Date().getFullYear(),
   height: 0,
   width: 0,
 };
@@ -48,6 +48,18 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
       }}
     >
       <div className="form__group">
+        <label htmlFor="title">Título: </label>
+        <input
+          required
+          className="form__input"
+          id="title"
+          type="text"
+          maxLength={50}
+          onChange={handleChange}
+          value={newArtworkData.title}
+        />
+      </div>
+      <div className="form__group">
         <label htmlFor="author">Autor: </label>
         <input
           className="form__input"
@@ -55,17 +67,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
           type="text"
           onChange={handleChange}
           value={newArtworkData.author}
-        />
-      </div>
-      <div className="form__group">
-        <label htmlFor="title">Título: </label>
-        <input
-          required
-          className="form__input"
-          id="title"
-          type="text"
-          onChange={handleChange}
-          value={newArtworkData.title}
+          maxLength={50}
         />
       </div>
       <div className="form__group">
@@ -75,6 +77,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
           className="form__input"
           id="location"
           type="text"
+          maxLength={50}
           onChange={handleChange}
           value={newArtworkData.location}
         />
@@ -93,6 +96,8 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
               className="form__input form__input--row"
               id="height"
               type="number"
+              min={0}
+              pattern="\d+"
               onChange={handleChange}
               value={newArtworkData.height}
             />
@@ -104,6 +109,8 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
               className="form__input form__input--row"
               id="width"
               type="number"
+              min={0}
+              pattern="\d+"
               onChange={handleChange}
               value={newArtworkData.width}
             />
@@ -118,6 +125,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
           className="form__input"
           id="medium"
           type="text"
+          maxLength={50}
           onChange={handleChange}
           value={newArtworkData.medium}
         />
@@ -140,6 +148,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
           className="form__input form__input--textarea"
           id="description"
           onChange={handleChange}
+          maxLength={300}
           value={newArtworkData.description}
         />
       </div>
@@ -150,6 +159,8 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
           className="form__input"
           id="year"
           type="number"
+          pattern="\d+"
+          min={1}
           onChange={handleChange}
           value={newArtworkData.year}
         />

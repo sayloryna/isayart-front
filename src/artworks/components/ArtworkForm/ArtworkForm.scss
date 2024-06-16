@@ -22,7 +22,6 @@
   &__input {
     padding: 5px variables.$general-padding;
     background-color: #f1f1f1;
-    text-transform: capitalize;
 
     &--row {
       max-width: 100px;
@@ -31,11 +30,6 @@
 
     &--textarea {
       height: 200px;
-      text-transform: none;
-    }
-
-    &--url {
-      text-transform: none;
     }
   }
 
