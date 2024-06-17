@@ -3,6 +3,7 @@ import ArtworkList from "./ArtworksList";
 import { mockArtworks } from "../../mocks/artworks";
 import { Provider } from "react-redux";
 import { store } from "../../../store/store";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Given the ArtworkList component", () => {
   describe("When it receive a list of artworks with 'la mona lisa' and 'Vitruvis man'", () => {
@@ -12,7 +13,9 @@ describe("Given the ArtworkList component", () => {
 
       render(
         <Provider store={store}>
-          <ArtworkList artworks={mockArtworks} />,
+          <MemoryRouter>
+            <ArtworkList artworks={mockArtworks} />,
+          </MemoryRouter>
         </Provider>,
       );
 

@@ -9,6 +9,7 @@ import { RouterProvider } from "react-router";
 import mainRouter from "../../../router/mainRouter";
 import { server } from "../../../mocks/node";
 import routes from "../../../routes/routes";
+import { MemoryRouter } from "react-router-dom";
 
 const user = userEvent.setup();
 
@@ -17,7 +18,9 @@ describe("Given the ArtworkCard", () => {
     render(
       <Provider store={store}>
         <RouterProvider router={mainRouter} />
-        <ArtworkCard artwork={mockMonaLisa} />,
+        <MemoryRouter>
+          <ArtworkCard artwork={mockMonaLisa} />,
+        </MemoryRouter>
       </Provider>,
     );
   });

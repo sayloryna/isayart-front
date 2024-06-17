@@ -31,7 +31,7 @@ const artworkInitialState: Artwork = {
 const ArtworkDetailPage = (): React.ReactElement => {
   const { artworkId } = useParams();
 
-  const [artwork, setArwork] = useState<Artwork>(artworkInitialState);
+  const [artwork, setArtwork] = useState<Artwork>(artworkInitialState);
 
   useEffect(() => {
     (async () => {
@@ -41,7 +41,7 @@ const ArtworkDetailPage = (): React.ReactElement => {
         return;
       }
 
-      setArwork(artwork);
+      setArtwork(artwork);
     })();
   }, [artworkId]);
   return <ArtworkDetail artwork={artwork} />;
