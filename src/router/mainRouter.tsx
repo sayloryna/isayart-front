@@ -9,6 +9,7 @@ import App from "../components/App/App";
 import routes from "../routes/routes";
 import Loading from "../components/Loading/Loading";
 import { GalleryPage, ArtworkFormPage, NotFoundPage } from "./lazyImports";
+import ArtworkDetailPage from "../artworks/pages/ArtworkDetailPage/ArtworkDetailPage";
 
 const mainRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const mainRouter = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route path="artworks/:artworkId" element={<ArtworkDetailPage />} />
       <Route
         path="*"
         element={

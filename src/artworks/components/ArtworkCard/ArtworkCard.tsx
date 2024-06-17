@@ -5,11 +5,11 @@ import { useAppDispatch } from "../../../store/hooks";
 import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
 import { notify, notifyError } from "./toast/notify";
 import "./ArtworkCard.scss";
+import { useNavigate } from "react-router-dom";
 
 interface ArtworkCardProps {
   artwork: Artwork;
 }
-
 const deleteArtwork = async (artworkId: string): Promise<void> => {
   try {
     await artworksClient.deleteArtworkById(artworkId);
@@ -21,22 +21,36 @@ const deleteArtwork = async (artworkId: string): Promise<void> => {
 
 const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
     <article className="artwork">
-      <h2 className="artwork__title">
-        {`${artwork.title}`} |
-        <span className="artwork__author">{` ${artwork.author}`}</span>
-      </h2>
+      <button
+        onClick={() => {
+          navigate(`/artworks/${artwork._id}`);
+        }}
+      >
+        <h2 className="artwork__title">
+          {`${artwork.title}`} |
+          <span className="artwork__author">{` ${artwork.author}`}</span>
+        </h2>
+      </button>
       <div className="artwork__images">
-        <img
-          className="artwork__picture"
-          src={artwork.artworkUrl}
-          alt={artwork.description}
-          width="200"
-          height="200"
-          loading="lazy"
-        />
+        <button
+          onClick={() => {
+            navigate(`/artworks/${artwork._id}`);
+            scroll(0, 0);
+          }}
+        >
+          <img
+            className="artwork__picture"
+            src={artwork.artworkUrl}
+            alt={artwork.description}
+            width="200"
+            height="200"
+            loading="lazy"
+          />
+        </button>
         <IconButton
           action={async () => {
             await deleteArtwork(artwork._id);
