@@ -21,6 +21,7 @@ describe("Given the ArtworkCard", () => {
       </Provider>,
     );
   });
+
   describe("When it receives the mona Lisa", () => {
     test("Then it should show a heading with 'La Mona Lisa'", () => {
       const expectedTitle = /la mona lisa/i;
