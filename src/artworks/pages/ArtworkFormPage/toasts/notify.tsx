@@ -7,6 +7,7 @@ export const notifyError = (error: Error) => {
     style: { fontWeight: 600, color: "black", fontSize: "1.5rem" },
   });
 };
+
 export const notify = () => {
   toast(<CreateArtworkSuccess />, {
     position: "top-center",

@@ -31,7 +31,7 @@ const mainRouter = createBrowserRouter(
         }
       />
       <Route
-        path="/*"
+        path="*"
         element={
           <Suspense fallback={<Loading />}>
             <NotFoundPage />

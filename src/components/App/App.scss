@@ -1,3 +1,5 @@
+@use "./../../styles/variables";
+
 .app {
   display: flex;
   flex-direction: column;
@@ -5,10 +7,10 @@
 }
 
 .main-content {
-  padding: 10px 0;
+  margin: 0 auto;
+  padding: variables.$general-padding;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
