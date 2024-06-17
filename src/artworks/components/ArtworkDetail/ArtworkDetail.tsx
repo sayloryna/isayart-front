@@ -30,7 +30,7 @@ const ArtworkDetail = ({ artwork }: ArtworkDetailProps): React.ReactElement => {
         </div>
         <div className="artwork__data">
           <span className="data-label">Dimensiones:</span>
-          <p className="data">{`${artwork.size.height} x ${artwork.size.width}cm`}</p>
+          <p className="data">{`${artwork.size.height} x ${artwork.size.width} cm`}</p>
         </div>
         <div className="artwork__data">
           <span className="data-label">Ubicación:</span>
