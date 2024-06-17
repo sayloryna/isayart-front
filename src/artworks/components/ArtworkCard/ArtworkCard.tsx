@@ -9,7 +9,6 @@ import "./ArtworkCard.scss";
 interface ArtworkCardProps {
   artwork: Artwork;
 }
-
 const deleteArtwork = async (artworkId: string): Promise<void> => {
   try {
     await artworksClient.deleteArtworkById(artworkId);
