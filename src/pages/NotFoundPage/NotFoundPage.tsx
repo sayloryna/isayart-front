@@ -12,6 +12,7 @@ const NotFoundPage = (): React.ReactElement => {
         alt="hombre con la boca abierta y espresion de sorpresa"
         width="200"
         height="200"
+        loading="lazy"
       />
       <span className="not-found__code">404</span>
     </div>
