@@ -11,3 +11,6 @@ export const GalleryPage = lazy(
 export const ArtworkFormPage = lazy(
   () => import("../artworks/pages/ArtworkFormPage/ArtworkFormPage"),
 );
+export const ArtworkDetailPage = lazy(
+  () => import("../artworks/pages/ArtworkDetailPage/ArtworkDetailPage"),
+);

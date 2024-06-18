@@ -40,7 +40,7 @@ export const mockVitruvis: Artwork = {
   title: "Vitruvis Man",
   author: "Leonardo da Vinci",
   description:
-    "Hombre desnudo con dentro de un circulo que muestra las proporciones del cuerpo humano",
+    "Hombre desnudo dentro de un circulo que muestra las proporciones del cuerpo humano",
   year: 1492,
   artworkUrl: "https://www.publico.es/uploads/2019/12/05/5de8f5ce26053.jpg",
   size: {

@@ -11,6 +11,9 @@ import { ArtworksState } from "../../artworksSlice/types";
 import { mockMonaLisa } from "../../mocks/artworks";
 import GalleryPage from "./GalleryPage";
 import mainRouter from "../../../router/mainRouter";
+import { Artwork } from "../../types";
+import { userEvent } from "@testing-library/user-event";
+import { ToastContainer } from "react-toastify";
 
 describe("given a GalleryPage component", () => {
   const initialUIState: UiState = {
@@ -23,24 +26,30 @@ describe("given a GalleryPage component", () => {
     reducers: {},
   });
 
+  function createMockStore(artworks: Artwork[]) {
+    const initialArtworksState: ArtworksState = {
+      artworks: artworks,
+    };
+
+    const mockArtworksSlice = createSlice({
+      name: "artworks",
+      initialState: initialArtworksState,
+      reducers: {},
+    });
+
+    const mockStore = configureStore({
+      reducer: {
+        artworks: mockArtworksSlice.reducer,
+        ui: mockUiSlice.reducer,
+      },
+    });
+    return mockStore;
+  }
+
   describe("When the artworks list is empty", () => {
     test("Then it should show a heading with the text 'No hay obras en la Galería'", () => {
-      const initialArtworksState: ArtworksState = {
-        artworks: [],
-      };
+      const mockStore = createMockStore([]);
 
-      const mockArtworksSlice = createSlice({
-        name: "artworks",
-        initialState: initialArtworksState,
-        reducers: {},
-      });
-
-      const mockStore = configureStore({
-        reducer: {
-          artworks: mockArtworksSlice.reducer,
-          ui: mockUiSlice.reducer,
-        },
-      });
       const expectedText = /no hay obras en la galería/i;
 
       render(
@@ -61,24 +70,7 @@ describe("given a GalleryPage component", () => {
 
   describe("When the artworks list contains 'la mona Lisa'", () => {
     test("Then it should show a heading with the text 'la mona Lisa'", () => {
-      const expectedText = /la mona lisa/i;
-
-      const initialArtworksState: ArtworksState = {
-        artworks: [mockMonaLisa],
-      };
-
-      const mockArtworksSlice = createSlice({
-        name: "artworks",
-        initialState: initialArtworksState,
-        reducers: {},
-      });
-
-      const mockStore = configureStore({
-        reducer: {
-          artworks: mockArtworksSlice.reducer,
-          ui: mockUiSlice.reducer,
-        },
-      });
+      const mockStore = createMockStore([mockMonaLisa]);
 
       render(
         <Provider store={mockStore}>
@@ -87,6 +79,7 @@ describe("given a GalleryPage component", () => {
           </MemoryRouter>
         </Provider>,
       );
+      const expectedText = /la mona lisa/i;
 
       const title = screen.getByRole("heading", {
         name: expectedText,
@@ -149,6 +142,74 @@ describe("given a GalleryPage component", () => {
       const toast = screen.getByText(expectedText);
 
       expect(toast).toBeVisible();
+    });
+  });
+
+  describe("And when the user clicks the 'mona lisa' delete buton", () => {
+    const user = userEvent.setup();
+    describe("And it success to delete", () => {
+      const mockStore = createMockStore([mockMonaLisa]);
+
+      test("Then it should show the message: 'Obra eliminada'", async () => {
+        const expectedTitle = /obra eliminada/i;
+        const expectedButtonName = /borrar/i;
+
+        render(
+          <Provider store={mockStore}>
+            <MemoryRouter>
+              <GalleryPage />
+              <ToastContainer />
+            </MemoryRouter>
+          </Provider>,
+        );
+
+        const button = screen.getByRole("button", {
+          name: expectedButtonName,
+        });
+
+        await user.click(button);
+
+        const succesMessage = await screen.findByRole("heading", {
+          name: expectedTitle,
+        });
+
+        expect(succesMessage).toBeInTheDocument();
+      });
+    });
+
+    describe("And it fails to delete", () => {
+      const mockStore = createMockStore([mockMonaLisa]);
+
+      test("Then it should show the message: 'Failed to delete'", async () => {
+        render(
+          <Provider store={mockStore}>
+            <MemoryRouter>
+              <GalleryPage />
+              <ToastContainer />
+            </MemoryRouter>
+          </Provider>,
+        );
+
+        server.use(
+          http.delete(
+            `${import.meta.env.VITE_API_URL}${routes.artworks}/${mockMonaLisa._id}`,
+            () => {
+              throw new Error();
+            },
+          ),
+        );
+        const expectedTitle = /failed to delete/i;
+        const expectedButtonName = /borrar/i;
+        const button = screen.getByRole("button", {
+          name: expectedButtonName,
+        });
+
+        await user.click(button);
+
+        const failedMessage = await screen.findByText(expectedTitle);
+
+        await expect(failedMessage).toBeInTheDocument();
+      });
     });
   });
 });
