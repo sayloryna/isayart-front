@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { notifyError } from "../ArtworkFormPage/toasts/notify";
 import artworksClient from "../../client/ArtworksClient";
 import { Artwork } from "../../types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ArtworkDetail from "../../components/ArtworkDetail/ArtworkDetail";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { hideLoading, showLoading } from "../../../ui/uiSlice/actions";
@@ -32,6 +32,7 @@ const artworkInitialState: Artwork = {
 };
 
 const ArtworkDetailPage = (): React.ReactElement => {
+  const navigate = useNavigate();
   const { artworkId } = useParams();
   const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.ui);
@@ -45,6 +46,8 @@ const ArtworkDetailPage = (): React.ReactElement => {
 
       if (!artwork) {
         notifyError(new Error("No se encontro la obra"));
+        dispatch(hideLoading);
+        navigate(`/notfound`);
         return;
       }
 
@@ -52,7 +55,7 @@ const ArtworkDetailPage = (): React.ReactElement => {
 
       dispatch(hideLoading);
     })();
-  }, [artworkId, dispatch]);
+  }, [artworkId, dispatch, navigate]);
 
   if (isLoading) {
     return <Loading />;
