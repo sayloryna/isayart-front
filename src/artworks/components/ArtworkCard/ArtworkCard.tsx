@@ -1,11 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { Artwork } from "../../types";
 import IconButton from "../../../components/IconButton/IconButton";
+import { notify, notifyError } from "./toast/notify";
 import artworksClient from "../../client/ArtworksClient";
 import { useAppDispatch } from "../../../store/hooks";
 import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
-import { notify, notifyError } from "./toast/notify";
+import routes from "../../../routes/routes";
 import "./ArtworkCard.scss";
-import { useNavigate } from "react-router-dom";
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -27,7 +28,7 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
     <article className="artwork">
       <button
         onClick={() => {
-          navigate(`/artworks/${artwork._id}`);
+          navigate(`${routes.artworks}/${artwork._id}`);
         }}
       >
         <h2 className="artwork__title">

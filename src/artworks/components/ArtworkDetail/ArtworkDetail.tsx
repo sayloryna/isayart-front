@@ -12,6 +12,7 @@ const ArtworkDetail = ({ artwork }: ArtworkDetailProps): React.ReactElement => {
       <h2 className="artwork-detail__title">{artwork.title}</h2>
       <img
         className="artwork-detail__image"
+        loading="lazy"
         src={artwork.artworkUrl}
         alt={artwork.description}
         width={artwork.size.width.toString()}

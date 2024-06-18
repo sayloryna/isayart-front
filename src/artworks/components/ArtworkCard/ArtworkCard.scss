@@ -9,7 +9,7 @@
 .favorite-button {
   position: absolute;
   left: 0;
-  bottom: -50px;
+  bottom: -40px;
 }
 
 .artwork {
@@ -18,7 +18,6 @@
   justify-items: center;
   text-align: center;
   gap: 8px;
-  padding: variables.$general-padding;
   width: 100%;
   border-bottom: variables.$container-border-bottom;
 
