@@ -18,7 +18,7 @@ export const mockMonaLisa: Artwork = {
 };
 
 export const mockMonaLisaPrado: Artwork = {
-  _id: "monalisaId",
+  _id: "pradomonalisaId",
   title: "La Mona Lisa del Prado",
   author: "Desconocido",
   description:
@@ -57,4 +57,4 @@ export const mockMonaLisaData: NewArtworkData = {
   width: mockMonaLisa.size.width,
   height: mockMonaLisa.size.height,
 };
-export const mockArtworks = [mockMonaLisa, mockVitruvis];
+export const mockArtworks = [mockMonaLisa, mockVitruvis, mockMonaLisaPrado];

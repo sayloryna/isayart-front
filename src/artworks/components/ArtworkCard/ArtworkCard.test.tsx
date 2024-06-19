@@ -4,17 +4,27 @@ import ArtworkCard from "./ArtworkCard";
 import { mockMonaLisa } from "../../mocks/artworks";
 import { store } from "../../../store/store";
 import { MemoryRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 describe("Given the ArtworkCard", () => {
+  const toggleFavourite = vi.fn();
+  const deleteArtwork = vi.fn();
   beforeEach(() => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <ArtworkCard artwork={mockMonaLisa} />,
+          <ArtworkCard
+            artwork={mockMonaLisa}
+            deleteAction={deleteArtwork}
+            toggleFavouriteAction={toggleFavourite}
+          />
+          ,
         </MemoryRouter>
       </Provider>,
     );
   });
+
+  const user = userEvent.setup();
 
   describe("When it receives the mona Lisa", () => {
     test("Then it should show a heading with 'La Mona Lisa'", () => {
@@ -68,14 +78,30 @@ describe("Given the ArtworkCard", () => {
       expect(button).toBeVisible();
     });
 
-    test("Then it should show a button with the name 'añadir a favoritos'", () => {
-      const expectedName = /añadir a favoritos/i;
+    test("Then it should show a button with the name 'corazon hueco'", () => {
+      const expectedName = /corazon hueco/i;
 
       const button = screen.getByRole("button", {
         name: expectedName,
       });
 
       expect(button).toBeVisible();
+    });
+
+    describe("And when the user clicks the favourite button", () => {
+      test("then it should call its toggle action'", async () => {
+        const expectedButtonName = mockMonaLisa.isFavourite
+          ? /corazon hueco/i
+          : /corazon hueco/i;
+
+        const button = await screen.getByRole("button", {
+          name: expectedButtonName,
+        });
+
+        await user.click(button);
+
+        expect(toggleFavourite).toHaveBeenCalled();
+      });
     });
   });
 });

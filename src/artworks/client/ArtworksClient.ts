@@ -1,6 +1,6 @@
 import routes from "../../routes/routes";
 import { convertNewArtworkDataToArtworkData } from "../DTO/artworksConverts";
-import { Artwork, NewArtworkData } from "../types";
+import { Artwork, ArtworkUpdate, NewArtworkData } from "../types";
 import { ArtworksClientStructure } from "./types";
 
 class ArtworksClient implements ArtworksClientStructure {
@@ -24,7 +24,7 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return deletedArtwork;
     } catch (error) {
-      throw new Error((error as { message: string }).message);
+      throw new Error((error as Error).message);
     }
   }
   async getArtworkById(artworkId: string): Promise<Artwork> {
@@ -43,7 +43,7 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return artwork;
     } catch (error) {
-      throw new Error((error as { message: string }).message);
+      throw new Error((error as Error).message);
     }
   }
   async getAll(): Promise<Artwork[]> {
@@ -87,6 +87,30 @@ class ArtworksClient implements ArtworksClientStructure {
       return newArtwork;
     } catch (error) {
       throw new Error("Failed to create Artwork: " + (error as Error).message);
+    }
+  }
+  async updateArtwork(update: ArtworkUpdate): Promise<Artwork> {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}${routes.artworks}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(update),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed! Code: " + response.status);
+      }
+
+      const { updatedArtwork } = (await response.json()) as {
+        updatedArtwork: Artwork;
+      };
+
+      return updatedArtwork;
+    } catch (error) {
+      throw new Error((error as Error).message);
     }
   }
 }

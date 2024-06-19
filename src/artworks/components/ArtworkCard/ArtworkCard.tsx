@@ -1,28 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { Artwork } from "../../types";
 import IconButton from "../../../components/IconButton/IconButton";
-import { notify, notifyError } from "./toast/notify";
 import artworksClient from "../../client/ArtworksClient";
 import { useAppDispatch } from "../../../store/hooks";
-import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
+import {
+  loadArtworksActionCreator,
+  updateArtworksActionCreator,
+} from "../../artworksSlice/artworksSlice";
 import routes from "../../../routes/routes";
 import "./ArtworkCard.scss";
 
 interface ArtworkCardProps {
   artwork: Artwork;
+  deleteAction: (artworkId: string) => Promise<void>;
+  toggleFavouriteAction: (artwork: Artwork) => Promise<Artwork>;
 }
-const deleteArtwork = async (artworkId: string): Promise<void> => {
-  try {
-    await artworksClient.deleteArtworkById(artworkId);
-    notify();
-  } catch (error) {
-    notifyError(error as Error);
-  }
-};
 
-const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
+const ArtworkCard = ({
+  artwork,
+  deleteAction,
+  toggleFavouriteAction,
+}: ArtworkCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const artworkId = artwork._id;
 
   return (
     <article className="artwork">
@@ -54,7 +55,7 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
         </button>
         <IconButton
           action={async () => {
-            await deleteArtwork(artwork._id);
+            await deleteAction(artworkId);
 
             const artworks = await artworksClient.getAll();
 
@@ -67,8 +68,16 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
           className="delete-button"
         />
         <IconButton
-          action={() => {}}
-          alternativeText="añadir a favoritos"
+          action={async () => {
+            const updateArtwork = await toggleFavouriteAction(artwork);
+
+            const action = updateArtworksActionCreator(updateArtwork);
+
+            dispatch(action);
+          }}
+          alternativeText={
+            artwork.isFavourite ? "corazon rosa" : "corazon hueco"
+          }
           source={
             artwork.isFavourite
               ? "assets/icons/heart-fill.svg"

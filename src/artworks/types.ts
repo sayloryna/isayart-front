@@ -13,6 +13,10 @@ export interface Artwork {
   location: string;
   medium: string;
 }
+export interface ArtworkUpdate {
+  _id: string;
+  update: Partial<Artwork>;
+}
 
 export type ArtworkData = Omit<Artwork, "_id" | "isFavourite">;
 export interface NewArtworkData {

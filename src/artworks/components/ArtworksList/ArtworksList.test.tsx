@@ -6,9 +6,9 @@ import { store } from "../../../store/store";
 import { MemoryRouter } from "react-router-dom";
 
 describe("Given the ArtworkList component", () => {
-  describe("When it receive a list of artworks with 'la mona lisa' and 'Vitruvis man'", () => {
+  describe("When it receive a list of artworks with 'la mona lisa del prado' and 'Vitruvis man'", () => {
     test("Then it should show a heading with 'La mona Lisa' and a heading with 'Vitruvis man'", () => {
-      const expectedMonaLisa = /la mona lisa/i;
+      const expectedMonaLisa = /la mona lisa del prado/i;
       const expectedVitruvis = /vitruvis man/i;
 
       render(
