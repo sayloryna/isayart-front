@@ -123,7 +123,7 @@ describe("given a GalleryPage component", () => {
     });
   });
 
-  describe("When the client throws the error cointaining: Unable to get Artworks", () => {
+  describe("When the client throws the error cointaining:'Imposible cargar obras'", () => {
     server.use(
       http.get(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
         throw new Error();
@@ -131,7 +131,7 @@ describe("given a GalleryPage component", () => {
     );
 
     test("then it should show a toast with the text:failed to fetch", () => {
-      const expectedText = /unable to get artworks/i;
+      const expectedText = /imposible cargar obras/i;
 
       render(
         <Provider store={store}>

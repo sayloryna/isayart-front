@@ -22,7 +22,7 @@ describe("Given an ArtworksClient", () => {
     });
 
     describe("And when the api responds with a status code 500", () => {
-      test("then it should throw an error:'Unable to get Artworks: Request failed! Code: 500'", async () => {
+      test("then it should throw an error:'Imposible cargar obras: Fallo en la conexion con el servidor codigo: 500'", async () => {
         server.use(
           http.get(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
             return new HttpResponse(null, {
@@ -32,7 +32,7 @@ describe("Given an ArtworksClient", () => {
         );
 
         const expectedError =
-          "Unable to get Artworks: Request failed! Code: 500";
+          "Imposible cargar obras: Fallo en la conexion con el servidor codigo: 500";
 
         expect(async () => {
           await client.getAll();
@@ -51,9 +51,9 @@ describe("Given an ArtworksClient", () => {
     describe("And  when the apiRest responds wiht the status code 409", () => {
       const statusCode = 409;
 
-      test("Then it should throw the error'Failed to create Artwork: Artwork with the title: La Mona Lisa already exist' ", async () => {
+      test("Then it should throw the error'Fallo al crear obra: La obra con el título: La Mona Lisa ya existe' ", async () => {
         const expectedError =
-          "Failed to create Artwork: Artwork with the title: La Mona Lisa already exist";
+          "Fallo al crear obra: La obra con el título: La Mona Lisa ya existe";
 
         server.use(
           http.post(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
@@ -83,9 +83,11 @@ describe("Given an ArtworksClient", () => {
     });
 
     describe("And when the API rest responds with  the status 404", () => {
-      test("Then it should throw the error: 'Request failed! Code: 404'", async () => {
+      test("Then it should throw the error: 'Fallo en la conexion con el servidor codigo: 400'", async () => {
         const statusCode = 404;
-        const expectedError = new Error(`Request failed! Code: ${statusCode}`);
+        const expectedError = new Error(
+          `Fallo en la conexion con el servidor codigo: ${statusCode}`,
+        );
 
         server.use(
           http.delete(
@@ -118,9 +120,11 @@ describe("Given an ArtworksClient", () => {
     });
 
     describe("And when the API rest responds with the status 400", () => {
-      test("Then it should throw the error: 'Request failed! Code: 404'", async () => {
+      test("Then it should throw the error: 'Fallo en la conexion con el servidor codigo: 400'", async () => {
         const statusCode = 400;
-        const expectedError = new Error(`Request failed! Code: ${statusCode}`);
+        const expectedError = new Error(
+          `Fallo en la conexion con el servidor codigo: ${statusCode}`,
+        );
 
         server.use(
           http.get(
@@ -167,10 +171,12 @@ describe("Given an ArtworksClient", () => {
   });
 
   describe("When its updateArtwork method is called with a notmatchingId and isFAvourite : true ", () => {
-    describe("And the API rest responds with an error:'Request failed! Code: 500'", () => {
-      test("Then it should throw the error:'Request failed! Code: 500' ", async () => {
+    describe("And the API rest responds with an error:'Fallo en la conexion con el servidor codigo: 500'", () => {
+      test("Then it should throw the error:'Fallo en la conexion con el servidor codigo: 500' ", async () => {
         const wrongId = "notmacthingId";
-        const expectedError = new Error("Request failed! Code: 500");
+        const expectedError = new Error(
+          "Fallo en la conexion con el servidor codigo: 500",
+        );
         const isFavouriteValue = true;
 
         const updateData: ArtworkUpdate = {

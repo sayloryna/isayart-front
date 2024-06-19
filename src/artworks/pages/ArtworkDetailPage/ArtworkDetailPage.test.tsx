@@ -14,6 +14,7 @@ describe("Given an artworkDetailPage", () => {
   describe("When rendered at '/characters/vitruvisId", () => {
     test("It should show the text 'Hombre desnudo dentro de un circulo que muestra las proporciones del cuerpo humano' ", async () => {
       const artworkId = "vitruvisId";
+
       render(
         <Provider store={store}>
           <MemoryRouter initialEntries={[`${routes.artworks}/${artworkId}`]}>
@@ -24,7 +25,6 @@ describe("Given an artworkDetailPage", () => {
               ></Route>
             </Routes>
           </MemoryRouter>
-          ,
         </Provider>,
       );
       const expectedText =
@@ -57,7 +57,7 @@ describe("Given an artworkDetailPage", () => {
                   path={`${routes.artworks}/:artworkId`}
                   element={<ArtworkDetailPage />}
                 ></Route>
-                <Route path={`*`} element={<NotFoundPage />}></Route>
+                <Route path="*" element={<NotFoundPage />}></Route>
               </Routes>
             </MemoryRouter>
           </Provider>,

@@ -18,7 +18,7 @@ describe("Given the ArtworkDetail component", () => {
       expect(title).toBeVisible();
     });
 
-    test("Then it should show an img with   the alternativeText containg 'copia de la Mona Lisa de Leonardo da Vinci", () => {
+    test("Then it should show an img with  the alternativeText containg 'copia de la Mona Lisa de Leonardo da Vinci", () => {
       const expectedAlternativeText =
         /copia de la Mona Lisa de Leonardo da Vinci/i;
 
@@ -27,12 +27,12 @@ describe("Given the ArtworkDetail component", () => {
       expect(image).toBeVisible();
     });
 
-    test("Then it should show the text 'desconocido, ", () => {
-      const expectedText = /desconocido, 1500/i;
+    test("Then it should show the imagecaption 'desconocido, 1500", () => {
+      const expectedAuthor = /desconocido, 1500/i;
 
-      const text = screen.getByText(expectedText);
+      const author = screen.getByText(expectedAuthor);
 
-      expect(text).toBeVisible();
+      expect(author).toBeVisible();
     });
 
     test("Then it should show the text '100 x 100 cm'", () => {
