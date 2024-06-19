@@ -8,7 +8,7 @@ import {
 } from "../../mocks/artworks";
 import artworksClient from "../ArtworksClient";
 import routes from "../../../routes/routes";
-import { Artwork } from "../../types";
+import { Artwork, ArtworkUpdate } from "../../types";
 
 describe("Given an ArtworksClient", () => {
   const client = artworksClient;
@@ -73,16 +73,16 @@ describe("Given an ArtworksClient", () => {
     });
   });
 
-  describe("When its createArtworkById method is called with la monaLisaId", () => {
+  describe("When its deleteArtworkById method is called with la monaLisaId", () => {
     describe("And the API rest responds with  the artwork 'la mona lisa'", () => {
-      test("Then it should return  the artwork 'la mona lisa'", async () => {
+      test("Then it should return the artwork 'la mona lisa'", async () => {
         const deletedArtwork = await client.deleteArtworkById(mockMonaLisa._id);
 
         expect(deletedArtwork).toEqual(mockMonaLisa);
       });
     });
 
-    describe("And the API rest responds with  the status 404", () => {
+    describe("And when the API rest responds with  the status 404", () => {
       test("Then it should throw the error: 'Request failed! Code: 404'", async () => {
         const statusCode = 404;
         const expectedError = new Error(`Request failed! Code: ${statusCode}`);
@@ -108,7 +108,7 @@ describe("Given an ArtworksClient", () => {
     });
   });
 
-  describe("When its getArtworkById method is called with la vitruvisId", () => {
+  describe("When its getArtworkById method is called with the vitruvisId", () => {
     describe("And the API rest responds with  the artwork 'vitruvis man'", () => {
       test("Then it should return  the artwork 'vitruvis man'", async () => {
         const artwork = await client.getArtworkById(mockVitruvis._id);
@@ -138,6 +138,50 @@ describe("Given an ArtworksClient", () => {
 
         expect(async () => {
           await client.getArtworkById(mockVitruvis._id);
+        }).rejects.toThrowError(expectedError);
+      });
+    });
+  });
+
+  describe("When its updateArtwork method is called with the vitruvisId and isFAvourite : true ", () => {
+    describe("And the API rest responds with  the artwork 'vitruvis man' with isFavourite: true", () => {
+      test("Then it should return the artwork 'vitruvis man' with IsFavourire: true", async () => {
+        const expectedIsFavouriteValue = true;
+        const updatedArtwork: Artwork = {
+          ...mockVitruvis,
+          isFavourite: expectedIsFavouriteValue,
+        };
+
+        const updateData: ArtworkUpdate = {
+          _id: mockVitruvis._id,
+          update: {
+            isFavourite: expectedIsFavouriteValue,
+          },
+        };
+
+        const artwork = await client.updateArtwork(updateData);
+
+        expect(artwork).toEqual(updatedArtwork);
+      });
+    });
+  });
+
+  describe("When its updateArtwork method is called with a notmatchingId and isFAvourite : true ", () => {
+    describe("And the API rest responds with an error:'Request failed! Code: 500'", () => {
+      test("Then it should throw the error:'Request failed! Code: 500' ", async () => {
+        const wrongId = "notmacthingId";
+        const expectedError = new Error("Request failed! Code: 500");
+        const isFavouriteValue = true;
+
+        const updateData: ArtworkUpdate = {
+          _id: wrongId,
+          update: {
+            isFavourite: isFavouriteValue,
+          },
+        };
+
+        expect(async () => {
+          await client.updateArtwork(updateData);
         }).rejects.toThrowError(expectedError);
       });
     });
