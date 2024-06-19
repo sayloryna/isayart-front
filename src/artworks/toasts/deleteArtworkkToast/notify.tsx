@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import DeleteArtworkSuccess from "./DeleteArtworkSuccess";
 
-export const notifyError = (error: Error) => {
-  toast.error(`Failed to delete artwork: ${error.message}`, {
+export const notifyDeleteArtworkError = (error: Error) => {
+  toast.error(`Fallo al borrar la obra: ${error.message}`, {
     position: "top-right",
     style: { fontWeight: 600, color: "black", fontSize: "1.5rem" },
   });

@@ -76,7 +76,7 @@ describe("Given the ArtworkFormPage", () => {
     });
 
     describe("And the artwork already exists ", () => {
-      test("Then it should show the message: 'Failed to create artwork'", async () => {
+      test("Then it should show the message: 'Fallo al crear la obra '", async () => {
         server.use(
           http.post(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
             return HttpResponse.json<{ newArtwork: Artwork }>(
@@ -88,7 +88,7 @@ describe("Given the ArtworkFormPage", () => {
           }),
         );
 
-        const expectedMessage = /Failed to create artwork/i;
+        const expectedMessage = /fallo al crear la obra /i;
 
         await fillAndSubmitForm();
 

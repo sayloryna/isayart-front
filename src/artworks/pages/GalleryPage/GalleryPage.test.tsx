@@ -123,15 +123,15 @@ describe("given a GalleryPage component", () => {
     });
   });
 
-  describe("When the client throws the error cointaining: Unable to get Artworks", () => {
+  describe("When the client throws the error cointaining:'Imposible cargar obras'", () => {
     server.use(
       http.get(`${import.meta.env.VITE_API_URL}${routes.artworks}`, () => {
-        throw new Error();
+        throw new Error("Imposible cargar obras");
       }),
     );
 
-    test("then it should show a toast with the text:failed to fetch", () => {
-      const expectedText = /unable to get artworks/i;
+    test("then it should show a toast with the text: Imposible cargar obras", () => {
+      const expectedText = /imposible cargar obras/i;
 
       render(
         <Provider store={store}>
@@ -180,7 +180,10 @@ describe("given a GalleryPage component", () => {
     describe("And it fails to delete", () => {
       const mockStore = createMockStore([mockMonaLisa]);
 
-      test("Then it should show the message: 'Failed to delete'", async () => {
+      test("Then it should show the message: 'Fallo al borrar la obra'", async () => {
+        const expectedTitle = /fallo al borrar la obra/i;
+        const expectedButtonName = /borrar/i;
+
         render(
           <Provider store={mockStore}>
             <MemoryRouter>
@@ -189,7 +192,6 @@ describe("given a GalleryPage component", () => {
             </MemoryRouter>
           </Provider>,
         );
-
         server.use(
           http.delete(
             `${import.meta.env.VITE_API_URL}${routes.artworks}/${mockMonaLisa._id}`,
@@ -198,8 +200,7 @@ describe("given a GalleryPage component", () => {
             },
           ),
         );
-        const expectedTitle = /failed to delete/i;
-        const expectedButtonName = /borrar/i;
+
         const button = screen.getByRole("button", {
           name: expectedButtonName,
         });

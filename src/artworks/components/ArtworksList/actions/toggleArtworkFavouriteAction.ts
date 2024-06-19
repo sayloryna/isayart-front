@@ -1,6 +1,6 @@
 import artworksClient from "../../../client/ArtworksClient";
 import { Artwork, ArtworkUpdate } from "../../../types";
-import { notifyError } from "../../ArtworkCard/toast/notify";
+import { notifyToggleIsFavouriteArtworksError } from "../../../toasts/toggleArtworkIsfavourite/notify";
 
 const toggleArtworkFavourite = async (artwork: Artwork): Promise<Artwork> => {
   const updateData: ArtworkUpdate = {
@@ -11,7 +11,7 @@ const toggleArtworkFavourite = async (artwork: Artwork): Promise<Artwork> => {
     const updatedArtwork = await artworksClient.updateArtwork(updateData);
     return updatedArtwork;
   } catch (error) {
-    notifyError(error as Error);
+    notifyToggleIsFavouriteArtworksError(error as Error);
     return artwork;
   }
 };

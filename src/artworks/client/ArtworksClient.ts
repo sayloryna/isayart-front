@@ -15,7 +15,9 @@ class ArtworksClient implements ArtworksClientStructure {
       );
 
       if (!response.ok) {
-        throw new Error("Request failed! Code: " + response.status);
+        throw new Error(
+          "Fallo en la conexion con el servidor codigo: " + response.status,
+        );
       }
 
       const { deletedArtwork } = (await response.json()) as {
@@ -24,7 +26,11 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return deletedArtwork;
     } catch (error) {
-      throw new Error((error as Error).message);
+      const errorMessage = (error as Error).message;
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+      throw new Error(errorMessage);
     }
   }
   async getArtworkById(artworkId: string): Promise<Artwork> {
@@ -34,7 +40,9 @@ class ArtworksClient implements ArtworksClientStructure {
       );
 
       if (!response.ok) {
-        throw new Error("Request failed! Code: " + response.status);
+        throw new Error(
+          "Fallo en la conexion con el servidor codigo: " + response.status,
+        );
       }
 
       const { artwork } = (await response.json()) as {
@@ -43,7 +51,11 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return artwork;
     } catch (error) {
-      throw new Error((error as Error).message);
+      const errorMessage = (error as Error).message;
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+      throw new Error(errorMessage);
     }
   }
   async getAll(): Promise<Artwork[]> {
@@ -53,14 +65,21 @@ class ArtworksClient implements ArtworksClientStructure {
       );
 
       if (!response.ok) {
-        throw new Error("Request failed! Code: " + response.status);
+        throw new Error(
+          "Fallo en la conexion con el servidor codigo: " + response.status,
+        );
       }
 
       const { artworks } = (await response.json()) as { artworks: Artwork[] };
 
       return artworks;
     } catch (error) {
-      throw new Error("Unable to get Artworks: " + (error as Error).message);
+      const errorMessage = (error as Error).message;
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+
+      throw new Error("Imposible cargar obras: " + (error as Error).message);
     }
   }
   async createArtwork(NewArtworkData: NewArtworkData): Promise<Artwork> {
@@ -80,13 +99,18 @@ class ArtworksClient implements ArtworksClientStructure {
 
       if (response.status === 409) {
         throw new Error(
-          `Artwork with the title: ${NewArtworkData.title} already exist`,
+          `La obra con el título: ${NewArtworkData.title} ya existe`,
         );
       }
 
       return newArtwork;
     } catch (error) {
-      throw new Error("Failed to create Artwork: " + (error as Error).message);
+      const errorMessage = (error as Error).message;
+
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+      throw new Error("Fallo al crear obra: " + (error as Error).message);
     }
   }
   async updateArtwork(update: ArtworkUpdate): Promise<Artwork> {
@@ -101,7 +125,9 @@ class ArtworksClient implements ArtworksClientStructure {
       );
 
       if (!response.ok) {
-        throw new Error("Request failed! Code: " + response.status);
+        throw new Error(
+          "Fallo en la conexion con el servidor codigo: " + response.status,
+        );
       }
 
       const { updatedArtwork } = (await response.json()) as {
@@ -110,6 +136,12 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return updatedArtwork;
     } catch (error) {
+      const errorMessage = (error as Error).message;
+
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+
       throw new Error((error as Error).message);
     }
   }

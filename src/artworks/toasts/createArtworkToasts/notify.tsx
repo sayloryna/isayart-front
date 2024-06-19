@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import CreateArtworkSuccess from "./CreateArtworkSuccess";
 
-export const notifyError = (error: Error) => {
-  toast.error(`Failed to create artwork ${error.message}`, {
+export const notifyCreateArtworkError = (error: Error) => {
+  toast.error(`Fallo al crear la obra ${error.message}`, {
     position: "top-right",
     style: { fontWeight: 600, color: "black", fontSize: "1.5rem" },
   });
