@@ -67,8 +67,8 @@ describe("Given an artworkDetailPage", () => {
 
         expect(text).toBeVisible();
       });
-      test("Then it should show the error text 'No se encontro la obra'", async () => {
-        const expectedText = /No se encontro la obra/i;
+      test("Then it should show the error text 'No se encontró la obra seleccionada'", async () => {
+        const expectedText = /no se encontró la obra seleccionada/i;
         const artworkId = "vitruvisId";
 
         server.use(

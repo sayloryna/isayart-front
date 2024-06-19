@@ -26,7 +26,11 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return deletedArtwork;
     } catch (error) {
-      throw new Error((error as Error).message);
+      const errorMessage = (error as Error).message;
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+      throw new Error(errorMessage);
     }
   }
   async getArtworkById(artworkId: string): Promise<Artwork> {
@@ -47,7 +51,11 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return artwork;
     } catch (error) {
-      throw new Error((error as Error).message);
+      const errorMessage = (error as Error).message;
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+      throw new Error(errorMessage);
     }
   }
   async getAll(): Promise<Artwork[]> {
@@ -66,6 +74,11 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return artworks;
     } catch (error) {
+      const errorMessage = (error as Error).message;
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+
       throw new Error("Imposible cargar obras: " + (error as Error).message);
     }
   }
@@ -92,6 +105,11 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return newArtwork;
     } catch (error) {
+      const errorMessage = (error as Error).message;
+
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
       throw new Error("Fallo al crear obra: " + (error as Error).message);
     }
   }
@@ -118,6 +136,12 @@ class ArtworksClient implements ArtworksClientStructure {
 
       return updatedArtwork;
     } catch (error) {
+      const errorMessage = (error as Error).message;
+
+      if (errorMessage === "Failed to fetch") {
+        throw new Error("Fallo en la peticion de recursos");
+      }
+
       throw new Error((error as Error).message);
     }
   }

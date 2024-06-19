@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { notifyError } from "../ArtworkFormPage/toasts/notify";
+import { notifyCreateArtworkError } from "../../toasts/createArtworkToasts/notify";
 import artworksClient from "../../client/ArtworksClient";
 import { Artwork } from "../../types";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,12 +7,13 @@ import ArtworkDetail from "../../components/ArtworkDetail/ArtworkDetail";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { hideLoading, showLoading } from "../../../ui/uiSlice/actions";
 import Loading from "../../../components/Loading/Loading";
+import { notifyLoadArtworkError } from "../../toasts/loadArtworkToasts/notify";
 
 const loadArtwork = async (artworkId: string): Promise<Artwork | void> => {
   try {
     return await artworksClient.getArtworkById(artworkId);
   } catch (error) {
-    notifyError(error as Error);
+    notifyCreateArtworkError(error as Error);
   }
 };
 const artworkInitialState: Artwork = {
@@ -45,9 +46,14 @@ const ArtworkDetailPage = (): React.ReactElement => {
       const artwork = await loadArtwork(artworkId as string);
 
       if (!artwork) {
-        notifyError(new Error("No se encontro la obra"));
+        notifyLoadArtworkError(
+          new Error("No se encontró la obra seleccionada"),
+        );
+
         dispatch(hideLoading);
+
         navigate(`/notfound`);
+
         return;
       }
 
