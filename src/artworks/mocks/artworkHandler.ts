@@ -34,7 +34,7 @@ const handlers = [
     },
   ),
 
-  http.put<PathParams, ArtworkUpdate>(
+  http.patch<PathParams, ArtworkUpdate>(
     `${import.meta.env.VITE_API_URL}${routes.artworks}`,
     async ({ request }) => {
       const updateData = await request.json();

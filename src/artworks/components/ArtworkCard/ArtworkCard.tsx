@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Artwork } from "../../types";
+import { Artwork, ArtworkUpdate } from "../../types";
 import IconButton from "../../../components/IconButton/IconButton";
 import { notify, notifyError } from "./toast/notify";
 import artworksClient from "../../client/ArtworksClient";
@@ -20,9 +20,22 @@ const deleteArtwork = async (artworkId: string): Promise<void> => {
   }
 };
 
+const toggleFavourite = async (artwork: Artwork): Promise<void> => {
+  const updateData: ArtworkUpdate = {
+    _id: artwork._id,
+    update: { isFavourite: !artwork.isFavourite },
+  };
+  try {
+    await artworksClient.updateArtwork(updateData);
+  } catch (error) {
+    notifyError(error as Error);
+  }
+};
+
 const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const artworkId = artwork._id;
 
   return (
     <article className="artwork">
@@ -54,7 +67,7 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
         </button>
         <IconButton
           action={async () => {
-            await deleteArtwork(artwork._id);
+            await deleteArtwork(artworkId);
 
             const artworks = await artworksClient.getAll();
 
@@ -67,14 +80,21 @@ const ArtworkCard = ({ artwork }: ArtworkCardProps): React.ReactElement => {
           className="delete-button"
         />
         <IconButton
-          action={() => {}}
+          action={async () => {
+            await toggleFavourite(artwork);
+            const artworks = await artworksClient.getAll();
+
+            const action = loadArtworksActionCreator(artworks);
+
+            dispatch(action);
+          }}
           alternativeText="añadir a favoritos"
           source={
             artwork.isFavourite
               ? "assets/icons/heart-fill.svg"
               : "assets/icons/heart-line.svg"
           }
-          className="favorite-button"
+          className={`favorite-button ${artwork.title}`}
         />
       </div>
       <div className="artwork__bottom">
