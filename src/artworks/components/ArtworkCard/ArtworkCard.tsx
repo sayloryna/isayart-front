@@ -9,7 +9,6 @@ import {
 } from "../../artworksSlice/artworksSlice";
 import routes from "../../../routes/routes";
 import "./ArtworkCard.scss";
-import { convertNumberto3DigitsString } from "./functions/convertNumberTo3DigitString";
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -49,8 +48,8 @@ const ArtworkCard = ({
             className="artwork__picture"
             src={artwork.artworkUrl}
             alt={artwork.description}
-            width={convertNumberto3DigitsString(artwork.size.width)}
-            height={convertNumberto3DigitsString(artwork.size.height)}
+            width={artwork.size.width.toString()}
+            height={artwork.size.height.toString()}
             loading="lazy"
           />
         </button>

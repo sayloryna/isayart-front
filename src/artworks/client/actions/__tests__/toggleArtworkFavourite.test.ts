@@ -1,5 +1,5 @@
-import { mockMonaLisa } from "../../../../mocks/artworks";
-import { Artwork } from "../../../../types";
+import { mockMonaLisa } from "../../../mocks/artworks";
+import { Artwork } from "../../../types";
 import toggleArtworkFavourite from "../toggleArtworkFavouriteAction";
 
 describe("Given a toggleArtworkAction function", () => {

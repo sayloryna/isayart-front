@@ -8,7 +8,7 @@ export const notifyDeleteArtworkError = (error: Error) => {
   });
 };
 
-export const notify = () => {
+export const notifyDeleteArtworkSuccess = () => {
   toast(<DeleteArtworkSuccess />, {
     position: "top-center",
     style: {

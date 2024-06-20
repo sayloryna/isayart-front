@@ -10,8 +10,8 @@ const EmptyGallery = (): React.ReactElement => {
         alt={
           "retrato de Madame François Buron leyendo un libro con expresion excandalizada"
         }
-        width={"200"}
-        height={"200"}
+        width="200"
+        height="200"
       />
     </div>
   );

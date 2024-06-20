@@ -1,19 +1,21 @@
+import { http } from "msw";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import routes from "../../../routes/routes";
 import ArtworkDetailPage from "./ArtworkDetailPage";
-import { Provider } from "react-redux";
 import { store } from "../../../store/store";
 import { server } from "../../../mocks/node";
-import { http } from "msw";
 import { mockVitruvis } from "../../mocks/artworks";
 import NotFoundPage from "../../../pages/NotFoundPage/NotFoundPage";
-import { ToastContainer } from "react-toastify";
 
 describe("Given an artworkDetailPage", () => {
   describe("When rendered at '/characters/vitruvisId", () => {
     test("It should show the text 'Hombre desnudo dentro de un circulo que muestra las proporciones del cuerpo humano' ", async () => {
       const artworkId = "vitruvisId";
+      const expectedText =
+        /hombre desnudo dentro de un circulo que muestra las proporciones del cuerpo humano/i;
 
       render(
         <Provider store={store}>
@@ -27,8 +29,6 @@ describe("Given an artworkDetailPage", () => {
           </MemoryRouter>
         </Provider>,
       );
-      const expectedText =
-        /hombre desnudo dentro de un circulo que muestra las proporciones del cuerpo humano/i;
 
       const description = await screen.findByText(expectedText);
 

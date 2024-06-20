@@ -29,7 +29,10 @@
     object-fit: contain;
     background-color: #ececec53;
     width: 100%;
+    height: auto;
     max-height: 400px;
+    min-height: 200px;
+    min-width: 200px;
   }
 
   &__bottom {
