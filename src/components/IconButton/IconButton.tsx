@@ -15,7 +15,7 @@ const IconButton = ({
 }: IconButtonProps): React.ReactElement => {
   return (
     <button className={`button button--icon ${className}`} onClick={action}>
-      <img src={source} alt={alternativeText} width="56" height="56" />
+      <img src={source} alt={alternativeText} width="48" height="48" />
     </button>
   );
 };
