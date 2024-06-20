@@ -9,7 +9,7 @@
 .favourite-button {
   position: absolute;
   left: 0;
-  bottom: -40px;
+  bottom: -45px;
 }
 
 .artwork {
@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-items: center;
   text-align: center;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
   border-bottom: variables.$container-border-bottom;
 
