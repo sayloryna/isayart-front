@@ -33,10 +33,12 @@ const artworkInitialState: Artwork = {
 };
 
 const ArtworkDetailPage = (): React.ReactElement => {
-  const navigate = useNavigate();
   const { artworkId } = useParams();
-  const dispatch = useAppDispatch();
+
   const { isLoading } = useAppSelector((state) => state.ui);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [artwork, setArtwork] = useState<Artwork>(artworkInitialState);
 
   useEffect(() => {
