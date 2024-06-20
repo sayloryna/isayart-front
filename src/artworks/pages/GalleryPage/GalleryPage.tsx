@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import EmptyGallery from "../../../components/EmptyGallery/EmptyGallery";
 import Loading from "../../../components/Loading/Loading";
+import EmptyGallery from "../../../components/EmptyGallery/EmptyGallery";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { loadArtworksActionCreator } from "../../artworksSlice/artworksSlice";
 import artworksClient from "../../client/ArtworksClient";

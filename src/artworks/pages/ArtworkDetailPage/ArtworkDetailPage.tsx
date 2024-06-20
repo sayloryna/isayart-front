@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { notifyCreateArtworkError } from "../../toasts/createArtworkToasts/notify";
-import artworksClient from "../../client/ArtworksClient";
-import { Artwork } from "../../types";
 import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../../../components/Loading/Loading";
+import { Artwork } from "../../types";
 import ArtworkDetail from "../../components/ArtworkDetail/ArtworkDetail";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { hideLoading, showLoading } from "../../../ui/uiSlice/actions";
-import Loading from "../../../components/Loading/Loading";
 import { notifyLoadArtworkError } from "../../toasts/loadArtworkToasts/notify";
+import loadArtwork from "../../client/actions/loadArtwork";
 
-const loadArtwork = async (artworkId: string): Promise<Artwork | void> => {
-  try {
-    return await artworksClient.getArtworkById(artworkId);
-  } catch (error) {
-    notifyCreateArtworkError(error as Error);
-  }
-};
 const artworkInitialState: Artwork = {
   _id: "",
   title: "",
@@ -33,10 +25,13 @@ const artworkInitialState: Artwork = {
 };
 
 const ArtworkDetailPage = (): React.ReactElement => {
-  const navigate = useNavigate();
   const { artworkId } = useParams();
-  const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.ui);
+
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
   const [artwork, setArtwork] = useState<Artwork>(artworkInitialState);
 
   useEffect(() => {

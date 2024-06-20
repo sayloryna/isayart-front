@@ -6,7 +6,7 @@ const Loading = () => {
       <div className="loading__content">
         <img
           className="loading__image"
-          src="assets/loading.svg"
+          src="assets/icons/loading.svg"
           alt="dibujo de un artista con bigote bufanda y boina"
           width="100"
           height="100"

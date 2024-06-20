@@ -8,7 +8,7 @@ export const notifyCreateArtworkError = (error: Error) => {
   });
 };
 
-export const notify = () => {
+export const notifyCreateArtworkSuccess = () => {
   toast(<CreateArtworkSuccess />, {
     position: "top-center",
     style: {

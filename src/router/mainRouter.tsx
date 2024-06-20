@@ -36,7 +36,7 @@ const mainRouter = createBrowserRouter(
         }
       />
       <Route
-        path="artworks/:artworkId"
+        path={`${routes.artworks}/:artworkId`}
         element={
           <Suspense fallback={<Loading />}>
             <ArtworkDetailPage />
@@ -46,7 +46,7 @@ const mainRouter = createBrowserRouter(
       <Route
         path="*"
         element={
-          <Suspense fallback={<NotFoundPage />}>
+          <Suspense>
             <NotFoundPage />
           </Suspense>
         }

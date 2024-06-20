@@ -1,8 +1,8 @@
 import { Artwork } from "../../types";
-import deleteArtworkAction from "./actions/deleteArtworkAction";
 import ArtworkCard from "../ArtworkCard/ArtworkCard";
+import toggleArtworkFavouriteAction from "../../client/actions/toggleArtworkFavouriteAction";
+import deleteArtworkAction from "../../client/actions/deleteArtworkAction";
 import "./ArtworksList.scss";
-import toggleArtworkFavouriteAction from "./actions/toggleArtworkFavouriteAction";
 
 interface ArtworkListProps {
   artworks: Artwork[];

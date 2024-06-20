@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { NewArtworkData } from "../../types";
 import { useNavigate } from "react-router-dom";
+import { NewArtworkData } from "../../types";
+import routes from "../../../routes/routes";
 import "./ArtworkForm.scss";
 
 interface ArtworkFormProps {
@@ -20,10 +21,11 @@ const artworkFormInitialState: NewArtworkData = {
 };
 
 const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
+  const navigate = useNavigate();
+
   const [newArtworkData, setNewArtworkData] = useState<NewArtworkData>(
     artworkFormInitialState,
   );
-  const navigate = useNavigate();
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -44,7 +46,7 @@ const ArtworkForm = ({ submit }: ArtworkFormProps): React.ReactElement => {
         await submit(newArtworkData);
 
         setNewArtworkData(artworkFormInitialState);
-        navigate("/artworks");
+        navigate(routes.artworks);
       }}
     >
       <div className="form__group">
