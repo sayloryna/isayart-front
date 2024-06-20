@@ -1,6 +1,7 @@
 import React from "react";
 import { Artwork } from "../../types";
 import "./ArtworkDetail.scss";
+import { convertNumberto3DigitsString } from "../ArtworkCard/functions/convertNumberTo3DigitString";
 
 interface ArtworkDetailProps {
   artwork: Artwork;
@@ -15,8 +16,8 @@ const ArtworkDetail = ({ artwork }: ArtworkDetailProps): React.ReactElement => {
         loading="lazy"
         src={artwork.artworkUrl}
         alt={artwork.description}
-        width={artwork.size.width.toString()}
-        height={artwork.size.height.toString()}
+        width={convertNumberto3DigitsString(artwork.size.width)}
+        height={convertNumberto3DigitsString(artwork.size.height)}
       />
       <p className="artwork-detail__authorship">{`${artwork.author}, ${artwork.year}`}</p>
       <div className="artwork-detail__info">

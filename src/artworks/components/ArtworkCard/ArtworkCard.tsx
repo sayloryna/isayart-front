@@ -9,6 +9,7 @@ import {
 } from "../../artworksSlice/artworksSlice";
 import routes from "../../../routes/routes";
 import "./ArtworkCard.scss";
+import { convertNumberto3DigitsString } from "./functions/convertNumberTo3DigitString";
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -48,8 +49,8 @@ const ArtworkCard = ({
             className="artwork__picture"
             src={artwork.artworkUrl}
             alt={artwork.description}
-            width="200"
-            height="200"
+            width={convertNumberto3DigitsString(artwork.size.width)}
+            height={convertNumberto3DigitsString(artwork.size.height)}
             loading="lazy"
           />
         </button>
@@ -83,7 +84,7 @@ const ArtworkCard = ({
               ? "assets/icons/heart-fill.svg"
               : "assets/icons/heart-line.svg"
           }
-          className="favorite-button"
+          className="favourite-button"
         />
       </div>
       <div className="artwork__bottom">
