@@ -66,6 +66,7 @@ const ArtworkCard = ({
           alternativeText="borrar"
           source="assets/icons/delete-bin.svg"
           className="delete-button"
+          ariaLabel="borrar obra"
         />
         <IconButton
           action={async () => {
@@ -84,6 +85,9 @@ const ArtworkCard = ({
               : "assets/icons/heart-line.svg"
           }
           className="favourite-button"
+          ariaLabel={
+            artwork.isFavourite ? "eliminar de favoritos" : "añadir a favoritos"
+          }
         />
       </div>
       <div className="artwork__bottom">
