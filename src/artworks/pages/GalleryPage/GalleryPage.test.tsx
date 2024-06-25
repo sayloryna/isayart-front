@@ -175,7 +175,7 @@ describe("given a GalleryPage component", () => {
           name: expectedTitle,
         });
 
-        expect(succesMessage).toBeInTheDocument();
+        expect(succesMessage).toBeVisible();
       });
     });
 

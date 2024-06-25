@@ -18,6 +18,7 @@ describe("Given the IconButton component", () => {
           action={buttonAction}
           source={source}
           alternativeText={alternativeText}
+          ariaLabel=""
         />,
       );
 
@@ -36,6 +37,7 @@ describe("Given the IconButton component", () => {
           action={buttonAction}
           source={source}
           alternativeText={alternativeText}
+          ariaLabel=""
         />,
       );
 

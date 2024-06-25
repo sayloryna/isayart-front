@@ -78,8 +78,8 @@ describe("Given the ArtworkCard", () => {
       expect(button).toBeVisible();
     });
 
-    test("Then it should show a button with the name 'corazon hueco'", () => {
-      const expectedName = /corazon hueco/i;
+    test("Then it should show a button with the name 'añadir a favoritos'", () => {
+      const expectedName = /añadir a favoritos/i;
 
       const button = screen.getByRole("button", {
         name: expectedName,
@@ -91,8 +91,8 @@ describe("Given the ArtworkCard", () => {
     describe("And when the user clicks the favourite button", () => {
       test("then it should call its toggle action'", async () => {
         const expectedButtonName = mockMonaLisa.isFavourite
-          ? /corazon hueco/i
-          : /corazon hueco/i;
+          ? /eliminar de favoritos/i
+          : /añadir a favoritos/i;
 
         const button = await screen.getByRole("button", {
           name: expectedButtonName,

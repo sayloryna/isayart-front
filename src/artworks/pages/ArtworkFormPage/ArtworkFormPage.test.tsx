@@ -30,6 +30,7 @@ describe("Given the ArtworkFormPage", () => {
       </MemoryRouter>,
     );
   });
+
   describe("When the user fills the form", () => {
     const user = userEvent.setup();
 
@@ -88,7 +89,7 @@ describe("Given the ArtworkFormPage", () => {
           }),
         );
 
-        const expectedMessage = /fallo al crear la obra /i;
+        const expectedMessage = /fallo al crear la obra/i;
 
         await fillAndSubmitForm();
 
